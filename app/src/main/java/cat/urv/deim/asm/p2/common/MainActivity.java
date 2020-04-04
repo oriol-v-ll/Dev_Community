@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
                 system.out.println("hola");
                 //esto es otra prueba
+                void hola(){
+                    
+                }
+
+
+                //prueba
             }
         });
     }
