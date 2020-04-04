@@ -29,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
                 //system.out.println("hola"); comento el hola paa ver si me a el git y pongo adios
                 system.out.println("deu Uri");
                 //esto es otra prueba
+                void hola(){
+                    
+                }
+
+
+                //prueba
             }
         });
     }
