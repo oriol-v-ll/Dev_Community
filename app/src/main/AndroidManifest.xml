@@ -13,12 +13,10 @@
         <activity android:name=".ErrorLoginActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".TutorialActivity" />
-        <activity android:name=".SplashActivity" />
+        <activity android:name=".MainActivity" />
+
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_login" />
-        <activity
-            android:name=".hola"
+            android:name=".SplashActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
