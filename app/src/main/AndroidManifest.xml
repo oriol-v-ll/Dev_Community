@@ -16,7 +16,7 @@
         <activity android:name=".MainActivity" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".SplashActivityi"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
