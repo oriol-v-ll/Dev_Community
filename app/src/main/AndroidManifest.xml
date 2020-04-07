@@ -18,7 +18,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".hola"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
