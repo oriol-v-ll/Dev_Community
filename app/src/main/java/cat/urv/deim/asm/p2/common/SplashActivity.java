@@ -8,7 +8,9 @@ import android.os.Handler;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-public class SplashActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SplashActivity extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 3000;
 
@@ -22,7 +24,7 @@ public class SplashActivity extends Activity {
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             };
