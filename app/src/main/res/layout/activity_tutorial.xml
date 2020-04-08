@@ -8,37 +8,34 @@
     tools:context=".TutorialActivity">
 
     <ImageView
-        android:id="@+id/help2"
+        android:id="@+id/help_2"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginTop="110dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/help_2"
         tools:layout_editor_absoluteY="146dp" />
 
     <TextView
-        android:id="@+id/Be_in_touch"
+        android:id="@+id/Texto_tutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/help2"
-        android:layout_marginTop="40dp"
+        android:layout_below="@+id/help_2"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:background="#0000BCD4"
-        android:text="Be in touch"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/help2"
+        app:layout_constraintTop_toBottomOf="@+id/help_2"
         tools:layout_editor_absoluteX="157dp" />
 
     <Button
-        android:id="@+id/skip"
+        android:id="@+id/skip_tutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Be_in_touch"
-        android:layaout_padding="@+id/skip"
+        android:layout_below="@+id/Texto_tutorial"
         android:layout_alignParentRight="true"
         android:layout_marginTop="130dp"
         android:layout_marginRight="60dp"
@@ -54,7 +51,7 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="450dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/skip"
+        android:layout_below="@+id/skip_tutorial"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="22dp"
