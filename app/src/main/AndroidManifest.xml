@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TutorialActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ErrorLoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ProfileActivity"></activity>

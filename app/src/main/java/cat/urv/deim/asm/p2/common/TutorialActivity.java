@@ -44,7 +44,6 @@ public class TutorialActivity extends AppCompatActivity {
                 //Que cambie el texto que nos interesa
                 text.setText("Learn");
 
-
             };
         }, DURACION_FOTO_2);
 
