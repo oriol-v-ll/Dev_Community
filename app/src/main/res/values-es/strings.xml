@@ -8,7 +8,7 @@
     <string name="error_n">"UPS... No se ha podido acceder"</string>
     <string name="error">"Tu usuario y contraseña no coinciden.
         Vuelvelo a intentar. "</string>
-    <string name="anonymous">"USUARIO ANONIMO"</string>
+    <string name="anonymous">"CONTINUA ANONIMAMENTE"</string>
     <string name="sign_in">"Usuario o E-mail"</string>
     <string name="password">"Contraseña"</string>
 </resources>

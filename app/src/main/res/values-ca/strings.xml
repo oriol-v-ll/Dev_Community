@@ -8,7 +8,7 @@
     <string name="error_n">"UPS... No s'ha pogut accedir"</string>
     <string name="error">"El teu usuari i contrasenya no coincideixen.
         Torna-ho a provar"</string>
-    <string name="anonymous">"USUARI ANONIM"</string>
+    <string name="anonymous">"CONTINUA ANONIMAMENT"</string>
     <string name="sign_in">"Usuari o E-mail"</string>
     <string name="password">"Contrasenya"</string>
 </resources>

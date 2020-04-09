@@ -17,7 +17,7 @@
         android:layout_marginEnd="87dp"
         android:layout_marginBottom="59dp"
         android:backgroundTint="#999898"
-        android:text="CONTINUE ANONYMOUSLY"
+        android:text="@string/anonymous"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -29,11 +29,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="67dp"
-        android:layout_marginTop="157dp"
+        android:layout_marginTop="133dp"
         android:layout_marginEnd="66dp"
-        android:layout_marginBottom="368dp"
         app:srcCompat="@drawable/ic_launcher" />
 
     <Button
@@ -63,15 +61,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-2dp"
-        android:layout_marginTop="532dp"
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="208dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textAlignment="center" />
 
@@ -80,15 +76,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="-2dp"
-        android:layout_marginTop="489dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="251dp"
         android:ems="10"
-        android:hint="User or E-mail"
+        android:hint="@string/sign_in"
         android:inputType="textEmailAddress"
         android:textAlignment="center" />
 </RelativeLayout>
