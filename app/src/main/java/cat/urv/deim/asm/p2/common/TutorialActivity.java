@@ -27,7 +27,7 @@ public class TutorialActivity extends AppCompatActivity {
         image.setImageResource(R.drawable.help_2);
         //Definimos el texto de la imagen para que quede concorde con las especificaciones
         final TextView text = (TextView) findViewById(R.id.Texto_tutorial);
-        text.setText("Be in touch");
+        text.setText(R.string.be_in_touch);
         tutorialbar.setProgress(33);
 
         //El cambio a la primera imagen
@@ -35,7 +35,7 @@ public class TutorialActivity extends AppCompatActivity {
             public void run(){
                 image.setImageResource(R.drawable.help_3);
                 //Que cambie el texto que nos interesa
-                text.setText("Networking");
+                text.setText(R.string.networking);
                 tutorialbar.setProgress(66);
 
             };
@@ -46,7 +46,7 @@ public class TutorialActivity extends AppCompatActivity {
             public void run(){
                 image.setImageResource(R.drawable.help_1);
                 //Que cambie el texto que nos interesa
-                text.setText("Learn");
+                text.setText(R.string.learn);
                 tutorialbar.setProgress(100);
 
             };
