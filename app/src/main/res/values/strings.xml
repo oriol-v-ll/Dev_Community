@@ -15,4 +15,9 @@
     <string name="be_in_touch">"Be in touch"</string>
     <string name="networking">"Networking"</string>
     <string name="learn">"Learn"</string>
+    <string name="try_again">"Try angain"</string>
+    <string name="error_n">"UPS... couldn't Sing In"</string>
+    <string name="error">"Your username and password doesn't match.
+        Please try again"</string>
+
 </resources>

@@ -4,4 +4,8 @@
     <string name="be_in_touch">"Interactui"</string>
     <string name="networking">"Conectat en línea"</string>
     <string name="learn">"Aprengui"</string>
+    <string name="try_again">"Torna a provar"</string>
+    <string name="error_n">"UPS... no s'ha pogut entrar"</string>
+    <string name="error">"El teu usuari i contrasenya no coincideixen.
+        Trona-ho a provar"</string>
 </resources>
