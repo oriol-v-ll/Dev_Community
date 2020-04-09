@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--Assignation of the diferent strings in the app-->
-    <string name="be_in_touch">"Estar en contacto"</string>
-    <string name="networking">"Redes"</string>
-    <string name="learn">"Aprender"</string>
+    <string name="be_in_touch">"Interactua"</string>
+    <string name="networking">"Conéctate en línea"</string>
+    <string name="learn">"Aprenda"</string>
 </resources>
