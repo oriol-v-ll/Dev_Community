@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".TutorialActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".LoginActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ErrorLoginActivity" />
+        <activity android:name=".ErrorLoginActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".ProfileActivity"></activity>
     </application>

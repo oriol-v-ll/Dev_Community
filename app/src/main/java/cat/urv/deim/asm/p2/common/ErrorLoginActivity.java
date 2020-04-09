@@ -12,7 +12,6 @@ public class ErrorLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error_login);
-
     }
 
     public void try_again(View view){
