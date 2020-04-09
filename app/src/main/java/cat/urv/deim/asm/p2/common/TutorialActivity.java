@@ -20,7 +20,7 @@ public class TutorialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tutorial);
         final ProgressBar tutorialbar = this.findViewById(R.id.progressBar);
 
-
+        //Linea para borrar
         /*----------Definición de cambio de imágenes y texto -----------------------*/
         //Definimos la imagen con android para poder variarla
         final ImageView image = (ImageView) findViewById(R.id.help_2);
