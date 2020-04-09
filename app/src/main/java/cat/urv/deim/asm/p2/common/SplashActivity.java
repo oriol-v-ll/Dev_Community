@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final int DURACION_SPLASH = 3000;
+    private final int DURACION_SPLASH = 2000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

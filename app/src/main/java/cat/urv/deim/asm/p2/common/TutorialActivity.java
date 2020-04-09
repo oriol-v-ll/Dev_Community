@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class TutorialActivity extends AppCompatActivity {
     private final int DURACION_FOTO = 4000; // 4 segundos
-    private final int DURACION_FOTO_2 = 8000; // 8 segundos
+    private final int DURACION_FOTO_2 = 6000; // 8 segundos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class TutorialActivity extends AppCompatActivity {
         //Definimos el texto de la imagen para que quede concorde con las especificaciones
         final TextView text = (TextView) findViewById(R.id.Texto_tutorial);
         text.setText("Be in touch");
-        tutorialbar.setProgress(30);
+        tutorialbar.setProgress(33);
 
         //El cambio a la primera imagen
         new Handler().postDelayed(new Runnable(){
@@ -36,7 +36,7 @@ public class TutorialActivity extends AppCompatActivity {
                 image.setImageResource(R.drawable.help_3);
                 //Que cambie el texto que nos interesa
                 text.setText("Networking");
-                tutorialbar.setProgress(60);
+                tutorialbar.setProgress(66);
 
             };
         }, DURACION_FOTO);
@@ -74,7 +74,7 @@ public class TutorialActivity extends AppCompatActivity {
                 finish();
 
             };
-        }, 12000);
+        }, 10000);
 
 
 
