@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class TutorialActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class TutorialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
+        final ProgressBar tutorialbar = this.findViewById(R.id.progressBar);
 
 
         /*----------Definición de cambio de imágenes y texto -----------------------*/
@@ -26,6 +28,7 @@ public class TutorialActivity extends AppCompatActivity {
         //Definimos el texto de la imagen para que quede concorde con las especificaciones
         final TextView text = (TextView) findViewById(R.id.Texto_tutorial);
         text.setText("Be in touch");
+        tutorialbar.setProgress(30);
 
         //El cambio a la primera imagen
         new Handler().postDelayed(new Runnable(){
@@ -33,6 +36,7 @@ public class TutorialActivity extends AppCompatActivity {
                 image.setImageResource(R.drawable.help_3);
                 //Que cambie el texto que nos interesa
                 text.setText("Networking");
+                tutorialbar.setProgress(60);
 
             };
         }, DURACION_FOTO);
@@ -43,6 +47,7 @@ public class TutorialActivity extends AppCompatActivity {
                 image.setImageResource(R.drawable.help_1);
                 //Que cambie el texto que nos interesa
                 text.setText("Learn");
+                tutorialbar.setProgress(100);
 
             };
         }, DURACION_FOTO_2);
@@ -70,6 +75,8 @@ public class TutorialActivity extends AppCompatActivity {
 
             };
         }, 12000);
+
+
 
 
     }
