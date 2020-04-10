@@ -10,4 +10,6 @@
     <string name="anonymous">"CONTINUA ANONIMAMENTE"</string>
     <string name="sign_in">"Usuario o E-mail"</string>
     <string name="password">"Contraseña"</string>
+    <string name="news">"Notícias"</string>
+    <string name="articles">"Artículos"</string>
 </resources>
