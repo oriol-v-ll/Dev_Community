@@ -30,14 +30,29 @@
         tools:layout="@layout/fragment_calendar" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="cat.urv.deim.asm.p2.common.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_profile"
+        android:name="cat.urv.deim.asm.p2.common.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/nav_send"
-        android:name="cat.urv.deim.asm.p2.common.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/nav_booksmarks"
+        android:name="cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment"
+        android:label="@string/booksmarks"
+        tools:layout="@layout/fragment_booksmark" />
+    <fragment
+        android:id="@+id/nav_faqs"
+        android:name="cat.urv.deim.asm.p2.common.ui.faqs.FaqsFragment"
+        android:label="@string/faqs"
+        tools:layout="@layout/fragment_faqs" />
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="cat.urv.deim.asm.p2.common.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

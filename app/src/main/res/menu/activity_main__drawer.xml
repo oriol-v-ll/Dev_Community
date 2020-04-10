@@ -21,18 +21,33 @@
             android:icon="@drawable/ic_query_builder_black_24dp"
             android:title="@string/calendar" />
     </group>
-
-    <item android:title="---------------">
+    <item>
         <menu>
             <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_person_black_24dp"
-                android:title="@string/menu_share" />
+                android:title="@string/profile" />
             <item
                 android:id="@+id/nav_favorites"
                 android:icon="@drawable/ic_favorite_black_24dp"
-                android:title="@string/menu_send" />
+                android:title="@string/favorites" />
+            <item
+                android:id="@+id/nav_booksmarks"
+                android:icon="@drawable/ic_bookmark_black_24dp"
+                android:title="@string/booksmarks" />
         </menu>
     </item>
-
+    <item>
+        <menu>
+            <item
+                android:id="@+id/nav_faqs"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="@string/faqs" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/settings" />
+        </menu>
+    </item>
 </menu>
+

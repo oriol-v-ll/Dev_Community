@@ -10,6 +10,13 @@
     <string name="anonymous">"CONTINUA ANONIMAMENTE"</string>
     <string name="sign_in">"Usuario o E-mail"</string>
     <string name="password">"Contraseña"</string>
-    <string name="news">"Notícias"</string>
+    <string name="news">"Notícies"</string>
     <string name="articles">"Artículos"</string>
+    <string name="events">"Eventos"</string>
+    <string name="calendar">"Calendario"</string>
+    <string name="profile">"Perfil"</string>
+    <string name="booksmarks">"Destacados"</string>
+    <string name="settings">"Opciones"</string>
+    <string name="faqs">"FAQs"</string>
+    <string name="favorites">"Favoritos"</string>
 </resources>

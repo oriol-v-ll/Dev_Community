@@ -1,16 +1,15 @@
-package cat.urv.deim.asm.p2.common.ui.share;
+package cat.urv.deim.asm.p2.common.ui.bookmarks;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ShareViewModel extends ViewModel {
-
+public class BookmarksViewModel extends ViewModel{
     private MutableLiveData<String> mText;
 
-    public ShareViewModel() {
+    public BookmarksViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is share fragment");
+        mText.setValue("BOOKSMARKS");
     }
 
     public LiveData<String> getText() {
