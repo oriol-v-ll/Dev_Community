@@ -32,23 +32,6 @@
         app:layout_constraintTop_toBottomOf="@+id/help_2"
         tools:layout_editor_absoluteX="157dp" />
 
-    <Button
-        android:id="@+id/skip_tutorial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginBottom="64dp"
-        android:background="#3B131313"
-        android:text="  Skip tutorial  "
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="visible" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -64,4 +47,16 @@
         android:layout_marginBottom="32dp"
         android:max="100"
         android:progressTint="#3F51B5" />
+
+    <ImageView
+        android:id="@+id/skip_tutorial"
+        android:layout_width="159dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="226dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="54dp"
+        app:srcCompat="@drawable/skip_button" />
 </RelativeLayout>

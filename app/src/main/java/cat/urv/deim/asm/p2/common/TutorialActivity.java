@@ -55,7 +55,7 @@ public class TutorialActivity extends AppCompatActivity {
         /*----------Final definición de cambio de imágenes y texto -----------------------*/
 
         /*----------Hacer que el botón funcione correctamente-----------------------------*/
-        Button skipTutorial = (Button) findViewById(R.id.skip_tutorial);
+        ImageView skipTutorial = (ImageView) findViewById(R.id.skip_tutorial);
         skipTutorial.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(TutorialActivity.this, LoginActivity.class);
