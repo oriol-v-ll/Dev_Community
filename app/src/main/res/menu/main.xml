@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_settings"
+        android:title="@string/settings"
         android:name="cat.urv.deim.asm.p2.common.ui.settings.SettingsFragment"
         android:orderInCategory="100" />
     <item
