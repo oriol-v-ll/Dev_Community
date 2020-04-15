@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -24,6 +26,17 @@ public class LoginActivity extends AppCompatActivity {
         pass = (EditText)findViewById(R.id.password);
         pref = getApplicationContext().getSharedPreferences("MyPref",
                 0); // 0 - for private mode
+
+        boolean anonym = pref.getBoolean("anonym", false);
+        final Button button_anonym = (Button) findViewById(R.id.anonymous);
+
+        button_anonym.setText(R.string.anonymous);
+
+        //cuando es true es que es anonimo
+        if (anonym){
+            button_anonym.setText(R.string.continue_anonymous);
+        }
+
     }
 
     /*------Validación de lo que introduce el usuario---------*/
