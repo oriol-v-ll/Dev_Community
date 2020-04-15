@@ -2,6 +2,7 @@ package cat.urv.deim.asm.p2.common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -67,4 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
     /*--------Final de creamos método para el uso anónimo de la app-------*/
+
+
+
 }
