@@ -3,6 +3,7 @@ package cat.urv.deim.asm.p2.common;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usr, pass;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
 
         usr = (EditText)findViewById(R.id.user);
         pass = (EditText)findViewById(R.id.password);
+        pref = getApplicationContext().getSharedPreferences("MyPref",
+                0); // 0 - for private mode
     }
 
     /*------Validación de lo que introduce el usuario---------*/
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String user = usr.getText().toString();
         String password = pass.getText().toString();
+        // Variable para comprobar la entrada anonima o logeada
 
         //Si el usuario no pone usuario  o contraseña se va al error.
         if ((user.length() == 0)||(password.length()==0)){
@@ -35,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
             finish();
 
         }else{ //De momento no se valida con la base de datos si el usuario y contraseña son correctos.
+            // Entramos de manera registrada
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("anonym", false); // Storing boolean - true/false
+            editor.commit(); // commit changes
 
             //Se lleva al usuario a la Activity principal.
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -48,6 +57,11 @@ public class LoginActivity extends AppCompatActivity {
 
     /*--------Creamos método para el uso anónimo de la app-------*/
     public void anonymous_use(View view){
+        // Entramos de manera anonima
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("anonym", true); // Storing boolean - true/false
+        editor.commit(); // commit changes
+
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);//Lo tenemos que enviar al main anonimo
         startActivity(intent);
         finish();
