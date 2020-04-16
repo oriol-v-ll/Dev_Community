@@ -111,10 +111,9 @@ public class MainActivity extends AppCompatActivity {
                                 fragment = new CalendarFragment();
                                 fragmentTransaction = true;
                                 break;
-
                             case R.id.nav_faqs:
-                                Intent intent1 = new Intent(MainActivity.this, FaqsActivity.class);
-                                startActivity(intent1);
+                                Intent intent3 = new Intent(MainActivity.this, FaqsActivity2.class);
+                                startActivity(intent3);
                                 finish();
                                 break;
                             case R.id.nav_favorites:
