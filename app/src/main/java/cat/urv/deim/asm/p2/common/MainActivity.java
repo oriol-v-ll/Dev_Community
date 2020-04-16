@@ -32,7 +32,6 @@ import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
 import cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment;
 import cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment;
 import cat.urv.deim.asm.p2.common.ui.events.EventsFragment;
-import cat.urv.deim.asm.p2.common.ui.faqs.FaqsFragment;
 import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
 
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
                         boolean fragmentTransaction = false;
                         Fragment fragment = null;
-
                         //
                         switch (menuItem.getItemId()) {
                             case R.id.nav_profile:
@@ -115,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
                                 break;
 
                             case R.id.nav_faqs:
-                                fragment = new FaqsFragment();
-                                fragmentTransaction = true;
+                                Intent intent1 = new Intent(MainActivity.this, FaqsActivity.class);
+                                startActivity(intent1);
+                                finish();
                                 break;
                             case R.id.nav_favorites:
                                 fragment = new FavoritesFragment();
@@ -125,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.nav_booksmarks:
                                 fragment = new BookmarksFragment();
                                 fragmentTransaction = true;
+                                break;
+                            case R.id.nav_settings:
+                                Intent intent2 = new Intent(MainActivity.this, SettingsActivity.class);
+                                startActivity(intent2);
+                                finish();
                                 break;
                         }
 
@@ -162,7 +166,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
 
 }

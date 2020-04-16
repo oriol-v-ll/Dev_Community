@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -13,7 +14,6 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         pref = getApplicationContext().getSharedPreferences("MyPref",
                 0);
 
