@@ -32,6 +32,7 @@ import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
 import cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment;
 import cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment;
 import cat.urv.deim.asm.p2.common.ui.events.EventsFragment;
+import cat.urv.deim.asm.p2.common.ui.faqs.FaqsFragment;
 import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
 import cat.urv.deim.asm.p2.common.ui.settings.SettingsFragment;
@@ -48,20 +49,20 @@ public class MainActivity extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences("MyPref",
                 0);
 
-       boolean anonym = pref.getBoolean("anonym", true);
+        boolean anonym = pref.getBoolean("anonym", true);
 
-       //cuando es true es que es anonimo
-       if (anonym){
+        //cuando es true es que es anonimo
+        if (anonym){
 
-           setContentView(R.layout.activity_main_anonym);
+            setContentView(R.layout.activity_main_anonym);
 
-       }
+        }
 
-       else{ //Metodo registrado.
+        else{ //Metodo registrado.
 
-           setContentView(R.layout.activity_main_);
+            setContentView(R.layout.activity_main_);
 
-       }
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
                         boolean fragmentTransaction = false;
                         Fragment fragment = null;
+
                         //
                         switch (menuItem.getItemId()) {
                             case R.id.nav_profile:
@@ -113,9 +115,8 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_faqs:
-                                Intent intent3 = new Intent(MainActivity.this, FaqsActivity2.class);
-                                startActivity(intent3);
-                                finish();
+                                fragment = new FaqsFragment();
+                                fragmentTransaction = true;
                                 break;
                             case R.id.nav_favorites:
                                 fragment = new FavoritesFragment();
@@ -126,9 +127,8 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_settings:
-                                Intent intent2 = new Intent(MainActivity.this, SettingsActivity.class);
-                                startActivity(intent2);
-                                finish();
+                                fragment = new SettingsFragment();
+                                fragmentTransaction = true;
                                 break;
                         }
 
@@ -166,5 +166,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 
 }

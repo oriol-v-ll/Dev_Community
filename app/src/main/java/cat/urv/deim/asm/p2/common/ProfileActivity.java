@@ -32,7 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
         else{ //Metodo registrado.
 
             setContentView(R.layout.activity_profile);
-
         }
 
 
