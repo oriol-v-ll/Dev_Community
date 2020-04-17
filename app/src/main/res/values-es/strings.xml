@@ -17,7 +17,7 @@
     <string name="calendar">"Calendario"</string>
     <string name="profile">"Perfil"</string>
     <string name="booksmarks">"Destacados"</string>
-    <string name="settings">"Ajustes"</string>
+    <string name="settings">"Opciones"</string>
     <string name="faqs">"FAQs"</string>
     <string name="favorites">"Favoritos"</string>
 </resources>
