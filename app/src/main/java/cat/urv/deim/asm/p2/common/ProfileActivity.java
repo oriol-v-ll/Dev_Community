@@ -1,10 +1,15 @@
 package cat.urv.deim.asm.p2.common;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -32,8 +37,19 @@ public class ProfileActivity extends AppCompatActivity {
         else{ //Metodo registrado.
 
             setContentView(R.layout.activity_profile);
+            Toolbar toolbar = findViewById(R.id.toolbar_prof);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Falta inflater de menú.
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_no_search, menu);
+        return true;
+    }
+
 }

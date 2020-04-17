@@ -28,13 +28,7 @@
         android:name="cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment"
         android:label="@string/calendar"
         tools:layout="@layout/fragment_calendar" />
-
-    <fragment
-        android:id="@+id/nav_profile"
-        android:name="cat.urv.deim.asm.p2.common.ui.profile.ProfileFragment"
-        android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
-
+    
     <fragment
         android:id="@+id/nav_booksmarks"
         android:name="cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment"
