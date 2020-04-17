@@ -34,6 +34,7 @@ import cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment;
 import cat.urv.deim.asm.p2.common.ui.events.EventsFragment;
 import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
+import cat.urv.deim.asm.p2.common.ui.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
