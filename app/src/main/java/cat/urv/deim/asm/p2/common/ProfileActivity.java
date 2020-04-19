@@ -1,5 +1,6 @@
 package cat.urv.deim.asm.p2.common;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -10,8 +11,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends MainActivity {
 
     SharedPreferences pref;
 
@@ -28,6 +30,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (anonym){
 
+            //Al ser anónimo se tiene que volver al menú de login.
             Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -39,7 +42,20 @@ public class ProfileActivity extends AppCompatActivity {
             setContentView(R.layout.activity_profile);
             Toolbar toolbar = findViewById(R.id.toolbar_prof);
             setSupportActionBar(toolbar);
+            //El metodo setDiplayHomeUpEnabled pone la flecha pero al hacer click lo quita de cualquier elemento UI.
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            //Ponemos un listener en el objeto de la flecha hacia atras para que vaya un paso atras
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // perform whatever you want on back arrow click
+                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+
         }
 
 
