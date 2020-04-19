@@ -32,10 +32,8 @@ import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
 import cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment;
 import cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment;
 import cat.urv.deim.asm.p2.common.ui.events.EventsFragment;
-import cat.urv.deim.asm.p2.common.ui.faqs.FaqsFragment;
 import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
-import cat.urv.deim.asm.p2.common.ui.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
                         //
                         switch (menuItem.getItemId()) {
                             case R.id.nav_profile:
-                                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                                startActivity(intent);
+                                Intent profile = new Intent(MainActivity.this, ProfileActivity.class);
+                                startActivity(profile);
                                 finish();
                                 break;
                             case R.id.nav_news:
@@ -115,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_faqs:
-                                fragment = new FaqsFragment();
-                                fragmentTransaction = true;
+                                Intent faqs = new Intent(MainActivity.this, FaqsActivity.class);
+                                startActivity(faqs);
+                                finish();
                                 break;
                             case R.id.nav_favorites:
                                 fragment = new FavoritesFragment();
@@ -127,8 +126,9 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_settings:
-                                fragment = new SettingsFragment();
-                                fragmentTransaction = true;
+                                Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
+                                startActivity(settings);
+                                finish();
                                 break;
                         }
 

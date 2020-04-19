@@ -23,28 +23,21 @@ public class ProfileActivity extends MainActivity {
 
         pref = getApplicationContext().getSharedPreferences("MyPref",
                 0);
-
         boolean anonym = pref.getBoolean("anonym", true);
 
         //cuando es true es que es anonimo
-
         if (anonym){
-
             //Al ser anónimo se tiene que volver al menú de login.
             Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
-
         }
-
         else{ //Metodo registrado.
-
             setContentView(R.layout.activity_profile);
             Toolbar toolbar = findViewById(R.id.toolbar_prof);
             setSupportActionBar(toolbar);
             //El metodo setDiplayHomeUpEnabled pone la flecha pero al hacer click lo quita de cualquier elemento UI.
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
             //Ponemos un listener en el objeto de la flecha hacia atras para que vaya un paso atras
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -55,11 +48,9 @@ public class ProfileActivity extends MainActivity {
                     finish();
                 }
             });
-
         }
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Falta inflater de menú.
@@ -67,5 +58,4 @@ public class ProfileActivity extends MainActivity {
         getMenuInflater().inflate(R.menu.menu_no_search, menu);
         return true;
     }
-
 }

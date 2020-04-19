@@ -11,11 +11,11 @@
     <string name="continue_anonymous">"CONTINUA ANÓNIMAMENTE"</string>
     <string name="sign_in">"Usuario o E-mail"</string>
     <string name="password">"Contraseña"</string>
-    <string name="news">"Notícies"</string>
+    <string name="news">"Notícias"</string>
     <string name="articles">"Artículos"</string>
     <string name="events">"Eventos"</string>
     <string name="calendar">"Calendario"</string>
-    <string name="profile">"Perfil"</string>
+    <string name="profile">"Perfil Usuario"</string>
     <string name="booksmarks">"Destacados"</string>
     <string name="settings">"Ajustes"</string>
     <string name="faqs">"FAQs"</string>
