@@ -20,8 +20,8 @@
         android:layout_height="264dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="93dp"
         app:srcCompat="@drawable/profile_user"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-2dp" />
@@ -49,8 +49,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="15dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="254dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="300dp"
         android:text="Sandra Adams"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
@@ -58,22 +58,22 @@
 
     <View
         android:id="@+id/barra_inferior"
-        android:layout_width="222dp"
+        android:layout_width="318dp"
         android:layout_height="1dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="145dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="196dp"
         android:background="@android:color/darker_gray" />
 
     <View
         android:id="@+id/barra_superior"
-        android:layout_width="222dp"
+        android:layout_width="318dp"
         android:layout_height="1dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="236dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="298dp"
         android:background="@android:color/darker_gray" />
 
     <TextView
@@ -83,8 +83,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="65dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="193dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="250dp"
         android:text="sandra.adams@email.com"
         android:textColor="#000000"
         android:textSize="16sp" />
@@ -96,8 +96,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="65dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="163dp"
+        android:layout_marginEnd="208dp"
+        android:layout_marginBottom="227dp"
         android:text="E-mail"
         android:textSize="16dp" />
 

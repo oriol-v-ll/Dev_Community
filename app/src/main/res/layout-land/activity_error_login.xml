@@ -30,8 +30,8 @@
         android:layout_height="45dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="295dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="258dp"
         android:gravity="center"
         android:text="@string/error_n"
         android:textSize="18sp"
@@ -58,8 +58,8 @@
         android:layout_height="47dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="230dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="202dp"
         android:text="@string/error"
         android:textAlignment="center" />
 </RelativeLayout>

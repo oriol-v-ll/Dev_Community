@@ -18,8 +18,8 @@
     <string name="networking">"Conéctate en línea"</string>
     <string name="learn">"Aprenda"</string>
     <string name="try_again">"Vuelve a probar"</string>
-    <string name="error_n">"UPS... No se ha podido acceder"</string>
-    <string name="error">"Tu usuario y contraseña no coinciden. ¡Vuelvelo a intentar! "</string>
+    <string name="error_n">"Vaya... No se ha podido acceder"</string>
+    <string name="error">"Tu usuario y contraseña no coinciden. ¡Vuélvelo a intentar! "</string>
     <string name="anonymous">"USUARIO ANÓNIMO"</string>
     <string name="continue_anonymous">"CONTINUA ANÓNIMAMENTE"</string>
     <string name="sign_in">"Usuario o E-mail"</string>

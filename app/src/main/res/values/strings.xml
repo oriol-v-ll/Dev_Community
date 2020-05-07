@@ -11,16 +11,16 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
-    <!--Assignation of the diferent strings in the app-->
+    <!--Assignation of the different strings in the app-->
     <string name="be_in_touch">"Be in touch"</string>
     <string name="networking">"Networking"</string>
     <string name="learn">"Learn"</string>
     <string name="try_again">"Try again"</string>
-    <string name="error_n">"UPS... couldn't Sing In"</string>
+    <string name="error_n">"UPS... Couldn't Sing In"</string>
     <string name="error">"Your username and password doesn't match. Please try again!"</string>
     <string name="anonymous">"ANONYMOUS USER"</string>
     <string name="continue_anonymous">"CONTINUE ANONYMOUSLY"</string>
-    <string name="sign_in">"User o E-mail"</string>
+    <string name="sign_in">"User or E-mail"</string>
     <string name="password">"Password"</string>
     <string name="news">"News"</string>
     <string name="articles">"Articles"</string>

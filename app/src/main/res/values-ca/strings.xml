@@ -14,10 +14,10 @@
 
     <!--Assignation of the diferent strings in the app-->
     <string name="be_in_touch">"Interactui"</string>
-    <string name="networking">"Conectat en línea"</string>
+    <string name="networking">"Conecta't en línea"</string>
     <string name="learn">"Aprengui"</string>
     <string name="try_again">"Torna a provar"</string>
-    <string name="error_n">"UPS... No s'ha pogut accedir"</string>
+    <string name="error_n">"Vaja... No s'ha pogut accedir"</string>
     <string name="error">"El teu usuari i contrasenya no coincideixen. Torna-ho a provar!"</string>
     <string name="anonymous">"USUARI ANÓNIM"</string>
     <string name="continue_anonymous">"CONTINUA ANÓNIMAMENT"</string>
@@ -25,11 +25,11 @@
     <string name="password">"Contrasenya"</string>
     <string name="news">"Notícies"</string>
     <string name="articles">"Artícles"</string>
-    <string name="events">"Events"</string>
+    <string name="events">"Esdeveniments"</string>
     <string name="calendar">"Calendari"</string>
     <string name="profile">"Perfil Usuari"</string>
     <string name="booksmarks">"Destacats"</string>
-    <string name="settings">"Opcions"</string>
+    <string name="settings">"Configuració"</string>
     <string name="faqs">"FAQs"</string>
     <string name="favorites">"Preferits"</string>
 
