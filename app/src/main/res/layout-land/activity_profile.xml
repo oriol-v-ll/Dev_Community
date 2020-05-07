@@ -18,10 +18,10 @@
         android:id="@+id/imageView2"
         android:layout_width="410dp"
         android:layout_height="264dp"
+        android:layout_below="@+id/toolbar_prof"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="3dp"
-        android:layout_marginBottom="93dp"
+        android:layout_marginTop="6dp"
         app:srcCompat="@drawable/profile_user"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-2dp" />
@@ -34,23 +34,22 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_prof"
-        android:title="@string/profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/AppTheme.AppBarOverlay">
-    </androidx.appcompat.widget.Toolbar>
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:title="@string/profile"></androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/toolbar_prof"
+        android:layout_alignStart="@+id/barra_inferior"
+        android:layout_marginStart="21dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="300dp"
+        android:layout_marginTop="31dp"
         android:text="Sandra Adams"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
@@ -60,31 +59,31 @@
         android:id="@+id/barra_inferior"
         android:layout_width="318dp"
         android:layout_height="1dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="196dp"
+        android:layout_below="@+id/textView4"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="36dp"
+        android:layout_toEndOf="@+id/imageView2"
         android:background="@android:color/darker_gray" />
 
     <View
         android:id="@+id/barra_superior"
         android:layout_width="318dp"
         android:layout_height="1dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="298dp"
+        android:layout_below="@+id/toolbar_prof"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="64dp"
+        android:layout_toEndOf="@+id/imageView2"
         android:background="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/toolbar_prof"
+        android:layout_marginStart="61dp"
         android:layout_marginLeft="65dp"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginTop="88dp"
+        android:layout_toEndOf="@+id/imageView2"
         android:text="sandra.adams@email.com"
         android:textColor="#000000"
         android:textSize="16sp" />
@@ -93,11 +92,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/toolbar_prof"
+        android:layout_marginStart="63dp"
         android:layout_marginLeft="65dp"
-        android:layout_marginEnd="208dp"
-        android:layout_marginBottom="227dp"
+        android:layout_marginTop="109dp"
+        android:layout_toEndOf="@+id/imageView2"
         android:text="E-mail"
         android:textSize="16dp" />
 
