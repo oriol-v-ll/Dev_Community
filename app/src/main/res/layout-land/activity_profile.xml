@@ -21,7 +21,7 @@
         android:layout_below="@+id/toolbar_prof"
         android:layout_alignParentStart="true"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="-14dp"
         app:srcCompat="@drawable/profile_user"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-2dp" />
@@ -46,32 +46,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_prof"
-        android:layout_alignStart="@+id/barra_inferior"
-        android:layout_marginStart="21dp"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/imageView2"
         android:text="Sandra Adams"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="24sp" />
 
     <View
-        android:id="@+id/barra_inferior"
-        android:layout_width="318dp"
-        android:layout_height="1dp"
-        android:layout_below="@+id/textView4"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="36dp"
-        android:layout_toEndOf="@+id/imageView2"
-        android:background="@android:color/darker_gray" />
-
-    <View
         android:id="@+id/barra_superior"
         android:layout_width="318dp"
         android:layout_height="1dp"
         android:layout_below="@+id/toolbar_prof"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="63dp"
         android:layout_toEndOf="@+id/imageView2"
         android:background="@android:color/darker_gray" />
 
@@ -93,9 +83,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_prof"
-        android:layout_marginStart="63dp"
+        android:layout_marginStart="61dp"
         android:layout_marginLeft="65dp"
-        android:layout_marginTop="109dp"
+        android:layout_marginTop="110dp"
         android:layout_toEndOf="@+id/imageView2"
         android:text="E-mail"
         android:textSize="16dp" />
