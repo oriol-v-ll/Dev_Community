@@ -21,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         setContentView(R.layout.activity_splash);
         //Declaramos bandera para que entre una sola vez en el tutorial
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
