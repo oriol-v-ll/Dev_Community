@@ -29,4 +29,13 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:title="@string/faqs"></androidx.appcompat.widget.Toolbar>
+
+
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/eListView"
+        android:layoutDirection="rtl"
+        />
+
 </RelativeLayout>
