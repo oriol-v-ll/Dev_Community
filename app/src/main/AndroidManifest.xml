@@ -17,7 +17,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".FaqsActivity"
+        <activity android:name="cat.urv.deim.asm.p3.shared.FaqsActivity"
             android:label="@string/faqs"
             android:parentActivityName=".MainActivity">
             <meta-data

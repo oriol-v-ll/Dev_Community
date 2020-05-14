@@ -4,19 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.MenuItem;
-import android.view.View;
 
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import android.content.SharedPreferences;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -26,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.Button;
 
 import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
 import cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment;
@@ -34,6 +27,7 @@ import cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment;
 import cat.urv.deim.asm.p2.common.ui.events.EventsFragment;
 import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
+import cat.urv.deim.asm.p3.shared.FaqsActivity;
 
 public class MainActivity extends AppCompatActivity {
 

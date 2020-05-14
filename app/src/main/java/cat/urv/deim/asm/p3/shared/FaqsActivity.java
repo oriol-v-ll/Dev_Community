@@ -1,6 +1,5 @@
-package cat.urv.deim.asm.p2.common;
+package cat.urv.deim.asm.p3.shared;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
@@ -8,7 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-public class FaqsActivity extends MainActivity  {
+import cat.urv.deim.asm.p2.common.MainActivity;
+import cat.urv.deim.asm.p2.common.R;
+
+public class FaqsActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
