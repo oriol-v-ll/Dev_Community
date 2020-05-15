@@ -14,5 +14,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/topics_tv"
         android:text="chapter texttview"
+        android:fontFamily="@font/cabin"
+        android:padding="10dp"
+        android:paddingStart="8dp"
+        android:textColor="#707070"
+        android:textSize="18sp"
         />
 </LinearLayout>

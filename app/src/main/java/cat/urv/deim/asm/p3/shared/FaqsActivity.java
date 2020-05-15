@@ -1,6 +1,7 @@
 package cat.urv.deim.asm.p3.shared;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,6 +41,9 @@ public class FaqsActivity extends MainActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar_faqs);
         setSupportActionBar(toolbar);
+
+
+
         //El metodo setDiplayHomeUpEnabled pone la flecha pero al hacer click lo quita de cualquier elemento UI.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Ponemos un listener en el objeto de la flecha hacia atras para que vaya un paso atras
@@ -59,36 +63,38 @@ public class FaqsActivity extends MainActivity {
         chapterList = new ArrayList<String>();
         topicList = new HashMap<String, List<String>>();
 
-        chapterList.add("Chapter 1");
-        chapterList.add("Chapter 2");
-        chapterList.add("Chapter 3");
-        chapterList.add("Chapter 4");
-        chapterList.add("Chapter 5");
+        chapterList.add("Pregunta 1");
+        chapterList.add("Pregunta 2");
+        chapterList.add("Pregunta 3");
+        chapterList.add("Pregunta 4");
+        chapterList.add("Pregunta 5");
+        chapterList.add("Pregunta 6");
 
         List<String> topic1 = new ArrayList<>();
-        topic1.add("Topic1");
-        topic1.add("Topic2");
-        topic1.add("Topic3");
+        topic1.add("Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo." +
+                " Luctus arcu, urna praesent at id quisque ac. Arcu es massa vestibulum maleusada," +
+                " integer vivamus elit eu mauris eus cum eros quis aliquam wisi. Nulla wisi laoreet" +
+                " suspendisse integer vivamus elit eu mauris");
 
         List<String> topic2 = new ArrayList<>();
-        topic2.add("Topic1");
-        topic2.add("Topic2");
-        topic2.add("Topic3");
+        topic2.add("Uri nos vamos paeeencima papiii!");
 
         List<String> topic3 = new ArrayList<>();
-        topic3.add("Topic1");
-        topic3.add("Topic2");
-        topic3.add("Topic3");
+        topic3.add("La movie en play ya no estamos en novela. Bby dale suave cuando baje que yo " +
+                "quiero ver ese tatuaje.");
 
         List<String> topic4 = new ArrayList<>();
-        topic4.add("Topic1");
-        topic4.add("Topic2");
-        topic4.add("Topic3");
+        topic4.add("YongKingz bby eso no lo hiso Juan Salgado. Sol en el bote y dinero en el tuvo." +
+                " Kevvo aunque tenga jevo yo me atrevo huele bicho cria cuervo.");
+
 
         List<String> topic5 = new ArrayList<>();
-        topic5.add("Topic1");
-        topic5.add("Topic2");
-        topic5.add("Topic3");
+        topic5.add("Somos reales aqui no hay phantom. Diabla per tiene un bury sagrado");
+
+        List<String> topic6 = new ArrayList<>();
+        topic6.add("Dise que es tranquila pero se las trae. Yo soy como el fly, 15 temporadas sin " +
+                "strike. Pq mami yo quiero la combi completa.");
+
 
 
         topicList.put(chapterList.get(0),topic1);
@@ -96,6 +102,7 @@ public class FaqsActivity extends MainActivity {
         topicList.put(chapterList.get(2),topic3);
         topicList.put(chapterList.get(3),topic4);
         topicList.put(chapterList.get(4),topic5);
+        topicList.put(chapterList.get(5),topic6);
 
     }
 

@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context="cat.urv.deim.asm.p3.shared.FaqsActivity">
 
-    <TextView
-        android:id="@+id/text_faqs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/faqs"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_faqs"
         android:layout_width="match_parent"
@@ -32,10 +17,17 @@
 
 
     <ExpandableListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/eListView"
-        android:layoutDirection="rtl"
-        />
+        android:layout_width="406dp"
+        android:layout_height="618dp"
+        android:layout_below="@+id/toolbar_faqs"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="53dp"
+        android:layoutDirection="rtl" />
 
 </RelativeLayout>
