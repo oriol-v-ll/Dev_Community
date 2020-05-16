@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p3.shared;
+package cat.urv.deim.asm.p3.shared.faqs;
 
 import android.content.Context;
 import android.view.LayoutInflater;

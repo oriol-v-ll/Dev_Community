@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import cat.urv.deim.asm.p3.shared.MainActivity;
-
 
 public class LoginActivity extends AppCompatActivity {
 

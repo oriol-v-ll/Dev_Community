@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
-import cat.urv.deim.asm.p3.shared.MainActivity;
-
 public class ProfileActivity extends MainActivity {
 
     SharedPreferences pref;

@@ -1,20 +1,42 @@
 package cat.urv.deim.asm.p3.shared.ui.events;
 
-public class EventsVo {
+import java.io.Serializable;
+
+public class EventsVo implements Serializable {
     private String name;
     private String info;
+    private String infoDetail;
     private int imageId;
     private String desc;
+    private int imagenDetail;
 
     public EventsVo(){
 
     }
 
-    public EventsVo (String name, String info, int imageId, String desc){
+    public EventsVo (String name, String info, int imageId, String desc, String infoDetail, int imagenDetail){
         this.name = name;
         this.info = info;
+        this.infoDetail = infoDetail;
         this.imageId = imageId;
+        this.imagenDetail = imagenDetail;
         this.desc = desc;
+    }
+
+    public void setInfoDetail(String infoDetail) {
+        this.infoDetail = infoDetail;
+    }
+
+    public void setImagenDetail(int imagenDetail) {
+        this.imagenDetail = imagenDetail;
+    }
+
+    public String getInfoDetail() {
+        return infoDetail;
+    }
+
+    public int getImagenDetail() {
+        return imagenDetail;
     }
 
     public String getName() {return name;}

@@ -1,6 +1,8 @@
 package cat.urv.deim.asm.p3.shared.ui.events;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,9 @@ public class EventsFragment extends Fragment {
     ArrayList<EventsVo> listaEvents;
     RecyclerView recyclerEvents;
 
+    Activity activity;
+    ICommunicateFragments interfaceCommunicateFragements;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_events,container, false);
@@ -43,6 +48,9 @@ public class EventsFragment extends Fragment {
                 Toast.makeText(getContext(), "Select: "
                         +listaEvents.get(recyclerEvents.getChildAdapterPosition(view)).getName(),
                         Toast.LENGTH_SHORT).show();
+
+                interfaceCommunicateFragements.sendEvent(listaEvents.get
+                        (recyclerEvents.getChildAdapterPosition(view)));
             }
         });
 
@@ -50,14 +58,41 @@ public class EventsFragment extends Fragment {
     }
 
     private void pullEventsList() {
-        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l, "En mi casa"));
-        listaEvents.add(new EventsVo("Juanma", "Seras crack", R.drawable.ic_menu_camera, "En su casa"));
-        listaEvents.add(new EventsVo("Jeejje", "Seras cerdo", R.drawable.error_l, "En la de tu mami"));
-        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l, "En la tuya"));
-        listaEvents.add(new EventsVo("Jamon Jamon", "Seras cerdo", R.drawable.error_l, "En mi casa"));
-        listaEvents.add(new EventsVo("Jeejje", "Seras cerdo", R.drawable.error_l, "En mi casa"));
-        listaEvents.add(new EventsVo("Jeejje", "Seras cerdo", R.drawable.error_l, "En mi huevo"));
-        listaEvents.add(new EventsVo("Jeejje", "Seras cerdo", R.drawable.error_l, "En la casa de Dios"));
-        listaEvents.add(new EventsVo("Jeejje", "Seras cerdo", R.drawable.error_l, "En mi casa"));
+        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("Juan", "", R.drawable.ic_menu_gallery,
+                "En la casa", "ESTA ES LA CORTA",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("Tomas", "Seras pepo", R.drawable.error_l,
+                "En su casa", "ESTA ES LA Corta",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("Uri", "i", R.drawable.error_l,
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("h", "Seras cerdo", R.drawable.error_l,
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+
+        listaEvents.add(new EventsVo("FATIMA", "Seras PIPI", R.drawable.error_l,
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            this.activity= (Activity) context;
+            interfaceCommunicateFragements= (ICommunicateFragments) this.activity;
+        }
     }
 }

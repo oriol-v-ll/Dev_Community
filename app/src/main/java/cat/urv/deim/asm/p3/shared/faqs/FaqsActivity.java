@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p3.shared;
+package cat.urv.deim.asm.p3.shared.faqs;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import cat.urv.deim.asm.p2.common.R;
+import cat.urv.deim.asm.p2.common.MainActivity;
 
 public class FaqsActivity extends MainActivity {
 

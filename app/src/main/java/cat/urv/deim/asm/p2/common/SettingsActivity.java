@@ -8,8 +8,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceFragmentCompat;
 
-import cat.urv.deim.asm.p3.shared.MainActivity;
-
 public class SettingsActivity extends MainActivity {
 
     @Override

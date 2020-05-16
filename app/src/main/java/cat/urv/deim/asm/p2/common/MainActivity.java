@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p3.shared;
+package cat.urv.deim.asm.p2.common;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,17 +21,18 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-import cat.urv.deim.asm.p2.common.ProfileActivity;
-import cat.urv.deim.asm.p2.common.R;
-import cat.urv.deim.asm.p2.common.SettingsActivity;
+import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
 import cat.urv.deim.asm.p3.shared.ui.articles.ArticlesFragment;
 import cat.urv.deim.asm.p3.shared.ui.bookmarks.BookmarksFragment;
 import cat.urv.deim.asm.p3.shared.ui.calendar.CalendarFragment;
+import cat.urv.deim.asm.p3.shared.ui.events.EventsDetail;
 import cat.urv.deim.asm.p3.shared.ui.events.EventsFragment;
+import cat.urv.deim.asm.p3.shared.ui.events.EventsVo;
+import cat.urv.deim.asm.p3.shared.ui.events.ICommunicateFragments;
 import cat.urv.deim.asm.p3.shared.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p3.shared.ui.news.NewsFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ICommunicateFragments {
 
     private AppBarConfiguration mAppBarConfiguration;
     SharedPreferences pref;
@@ -164,5 +165,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void sendEvent(EventsVo event) {
+        EventsDetail detailEvent = new EventsDetail();
+        Bundle bundleSend = new Bundle();
+        bundleSend.putSerializable("object",event);
+        detailEvent.setArgument(bundleSend);
 
+        //cargar fragment en la activity
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_events,detailEvent).
+                addToBackStack(null).commit();
+    }
 }
