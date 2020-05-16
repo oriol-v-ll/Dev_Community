@@ -1,15 +1,16 @@
-package cat.urv.deim.asm.p2.common.ui.bookmarks;
+package cat.urv.deim.asm.p3.shared.ui.calendar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class BookmarksViewModel extends ViewModel{
+public class CalendarViewModel extends ViewModel {
+
     private MutableLiveData<String> mText;
 
-    public BookmarksViewModel() {
+    public CalendarViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("BOOKSMARKS");
+        mText.setValue("CALENDAR");
     }
 
     public LiveData<String> getText() {

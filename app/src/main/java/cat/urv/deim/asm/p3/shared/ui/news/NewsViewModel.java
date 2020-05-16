@@ -1,16 +1,16 @@
-package cat.urv.deim.asm.p2.common.ui.events;
+package cat.urv.deim.asm.p3.shared.ui.news;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class EventsViewModel extends ViewModel {
+public class NewsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public EventsViewModel() {
+    public NewsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("EVENTS");
+        mText.setValue("NEWS");
     }
 
     public LiveData<String> getText() {

@@ -12,20 +12,20 @@
 
         <activity android:name=".SettingsActivity"
             android:label="@string/settings"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="cat.urv.deim.asm.p3.shared.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="cat.urv.deim.asm.p3.shared.MainActivity" />
         </activity>
         <activity android:name="cat.urv.deim.asm.p3.shared.FaqsActivity"
             android:label="@string/faqs"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="cat.urv.deim.asm.p3.shared.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="cat.urv.deim.asm.p3.shared.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="cat.urv.deim.asm.p3.shared.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -41,10 +41,10 @@
         <activity
             android:name=".ProfileActivity"
             android:label="@string/profile"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="cat.urv.deim.asm.p3.shared.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="cat.urv.deim.asm.p3.shared.MainActivity" />
         </activity>
         <activity
             android:name=".TutorialActivity"

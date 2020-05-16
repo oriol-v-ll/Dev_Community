@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p2.common.ui.articles;
+package cat.urv.deim.asm.p3.shared.ui.articles;
 
 
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import cat.urv.deim.asm.p2.common.R;
-import cat.urv.deim.asm.p2.common.ui.news.NewsViewModel;
 
 public class ArticlesFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p2.common;
+package cat.urv.deim.asm.p3.shared;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,13 +21,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
-import cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment;
-import cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment;
-import cat.urv.deim.asm.p2.common.ui.events.EventsFragment;
-import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
-import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
-import cat.urv.deim.asm.p3.shared.FaqsActivity;
+import cat.urv.deim.asm.p2.common.ProfileActivity;
+import cat.urv.deim.asm.p2.common.R;
+import cat.urv.deim.asm.p2.common.SettingsActivity;
+import cat.urv.deim.asm.p3.shared.ui.articles.ArticlesFragment;
+import cat.urv.deim.asm.p3.shared.ui.bookmarks.BookmarksFragment;
+import cat.urv.deim.asm.p3.shared.ui.calendar.CalendarFragment;
+import cat.urv.deim.asm.p3.shared.ui.events.EventsFragment;
+import cat.urv.deim.asm.p3.shared.ui.favorites.FavoritesFragment;
+import cat.urv.deim.asm.p3.shared.ui.news.NewsFragment;
 
 public class MainActivity extends AppCompatActivity {
 

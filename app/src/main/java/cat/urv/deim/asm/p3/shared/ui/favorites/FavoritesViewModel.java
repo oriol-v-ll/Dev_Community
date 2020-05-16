@@ -1,16 +1,14 @@
-package cat.urv.deim.asm.p2.common.ui.news;
-
+package cat.urv.deim.asm.p3.shared.ui.favorites;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NewsViewModel extends ViewModel {
-
+public class FavoritesViewModel extends ViewModel{
     private MutableLiveData<String> mText;
 
-    public NewsViewModel() {
+    public FavoritesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("NEWS");
+        mText.setValue("FAVORITES");
     }
 
     public LiveData<String> getText() {

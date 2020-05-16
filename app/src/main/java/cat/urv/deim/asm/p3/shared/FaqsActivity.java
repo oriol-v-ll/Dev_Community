@@ -1,7 +1,6 @@
 package cat.urv.deim.asm.p3.shared;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cat.urv.deim.asm.p2.common.MainActivity;
 import cat.urv.deim.asm.p2.common.R;
 
 public class FaqsActivity extends MainActivity {

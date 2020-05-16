@@ -1,4 +1,5 @@
-package cat.urv.deim.asm.p2.common.ui.bookmarks;
+package cat.urv.deim.asm.p3.shared.ui.calendar;
+
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,16 +15,18 @@ import androidx.lifecycle.ViewModelProviders;
 
 import cat.urv.deim.asm.p2.common.R;
 
-public class BookmarksFragment extends Fragment{
-    private BookmarksViewModel bookmarksViewModel;
+
+public class CalendarFragment extends Fragment {
+
+    private CalendarViewModel calendarViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        bookmarksViewModel =
-                ViewModelProviders.of(this).get(BookmarksViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_booksmark, container, false);
-        final TextView textView = root.findViewById(R.id.text_booksmarks);
-        bookmarksViewModel.getText().observe(this, new Observer<String>() {
+        calendarViewModel =
+                ViewModelProviders.of(this).get(CalendarViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_calendar, container, false);
+        final TextView textView = root.findViewById(R.id.text_calendar);
+        calendarViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

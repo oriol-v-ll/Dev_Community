@@ -7,46 +7,46 @@
 
     <fragment
         android:id="@+id/nav_news"
-        android:name="cat.urv.deim.asm.p2.common.ui.news.NewsFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.news.NewsFragment"
         android:label="@string/news"
         tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/nav_articles"
-        android:name="cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.articles.ArticlesFragment"
         android:label="@string/articles"
         tools:layout="@layout/fragment_articles" />
 
     <fragment
         android:id="@+id/nav_events"
-        android:name="cat.urv.deim.asm.p2.common.ui.events.EventsFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.events.EventsFragment"
         android:label="@string/events"
         tools:layout="@layout/fragment_events" />
 
     <fragment
         android:id="@+id/nav_calendar"
-        android:name="cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.calendar.CalendarFragment"
         android:label="@string/calendar"
         tools:layout="@layout/fragment_calendar" />
     
     <fragment
         android:id="@+id/nav_booksmarks"
-        android:name="cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.bookmarks.BookmarksFragment"
         android:label="@string/booksmarks"
         tools:layout="@layout/fragment_booksmark" />
     <fragment
         android:id="@+id/nav_faqs"
-        android:name="cat.urv.deim.asm.p2.common.ui.faqs.FaqsFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.faqs.FaqsFragment"
         android:label="@string/faqs"
         tools:layout="@layout/fragment_faqs" />
     <fragment
         android:id="@+id/nav_favorites"
-        android:name="cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.favorites.FavoritesFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/nav_settings"
-        android:name="cat.urv.deim.asm.p2.common.ui.settings.SettingsFragment"
+        android:name="cat.urv.deim.asm.p3.shared.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>
