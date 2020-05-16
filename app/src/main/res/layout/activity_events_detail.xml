@@ -3,14 +3,25 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_events_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:title="@string/event_detail">
+    </androidx.appcompat.widget.Toolbar>
+
     <ImageView
         android:id="@+id/imageDetailId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/profile_user"
-        android:scaleType="fitXY"
+        android:layout_below="@+id/toolbar_events_detail"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="10dp"
-        />
+        android:scaleType="fitXY"
+        android:src="@drawable/profile_user" />
 
     <TextView
         android:id="@+id/titleId"

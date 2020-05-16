@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="cat.urv.deim.asm.p3.shared.EventsDetailActivity"></activity>
+        <activity
+            android:name="cat.urv.deim.asm.p3.shared.EventsDetailActivity"
+            android:label="@string/event_detail">
+        </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings"
