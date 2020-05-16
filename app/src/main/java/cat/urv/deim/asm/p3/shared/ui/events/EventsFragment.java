@@ -3,6 +3,7 @@ package cat.urv.deim.asm.p3.shared.ui.events;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import cat.urv.deim.asm.p2.common.ErrorLoginActivity;
+import cat.urv.deim.asm.p2.common.LoginActivity;
+import cat.urv.deim.asm.p2.common.MainActivity;
 import cat.urv.deim.asm.p2.common.R;
+import cat.urv.deim.asm.p3.shared.EventsDetailActivity;
 
 import static android.app.ProgressDialog.show;
 
@@ -34,7 +39,7 @@ public class EventsFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_events,container, false);
 
         listaEvents = new ArrayList<>();
-        recyclerEvents= (RecyclerView) view.findViewById(R.id.recyclerId);
+        recyclerEvents=  view.findViewById(R.id.recyclerId);
         recyclerEvents.setLayoutManager(new LinearLayoutManager(getContext()));
 
         pullEventsList();
@@ -49,8 +54,11 @@ public class EventsFragment extends Fragment {
                         +listaEvents.get(recyclerEvents.getChildAdapterPosition(view)).getName(),
                         Toast.LENGTH_SHORT).show();
 
-                interfaceCommunicateFragements.sendEvent(listaEvents.get
-                        (recyclerEvents.getChildAdapterPosition(view)));
+
+                Intent intent = new Intent(getActivity(), EventsDetailActivity.class);
+                startActivity(intent);
+
+
             }
         });
 

@@ -63,7 +63,7 @@
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/cabin"
                 android:text="Informacion"
-                android:textSize="18" />
+                android:textSize="18dp" />
 
             <ImageView
                 android:id="@+id/idImageEvent"
@@ -75,6 +75,34 @@
                 android:layout_marginEnd="14dp"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/ic_launcher" />
+
+            <ToggleButton
+                android:id="@+id/bookmarks"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="132dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/estados_boton"
+                android:text=""
+                android:textOff=""
+                android:textOn=""
+
+                />
+
+            <ToggleButton
+                android:id="@+id/favourites"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="61dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/estados_boton_favorites"
+                android:text=""
+                android:textOff=""
+                android:textOn="" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

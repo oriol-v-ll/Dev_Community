@@ -63,3 +63,4 @@ public class EventsDetail extends Fragment {
         return argument;
     }
 }
+

@@ -9,15 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".SettingsActivity"
+        <activity android:name="cat.urv.deim.asm.p3.shared.EventsDetailActivity"></activity>
+        <activity
+            android:name=".SettingsActivity"
             android:label="@string/settings"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name="cat.urv.deim.asm.p3.shared.faqs.FaqsActivity"
+        <activity
+            android:name="cat.urv.deim.asm.p3.shared.faqs.FaqsActivity"
             android:label="@string/faqs"
             android:parentActivityName=".MainActivity">
             <meta-data
