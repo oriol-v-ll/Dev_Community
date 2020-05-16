@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
         //cargar fragment en la activity
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_events,detailEvent).
+                .replace(R.id.nav_host_fragment,detailEvent).
                 addToBackStack(null).commit();
     }
 }
