@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
@@ -27,6 +28,7 @@ public class EventsDetail extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -42,7 +44,7 @@ public class EventsDetail extends Fragment {
 
         if (objectEvent != null){
             event = (EventsVo) objectEvent.getSerializable("object");
-            imageDetail.setImageResource(event.getImagenDetail());
+            imageDetail.setImageResource(event.getImageDetail());
             textDescription.setText(event.getInfoDetail());
             textTitle.setText(event.getName());
             textSite.setText(event.getDesc());

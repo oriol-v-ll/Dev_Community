@@ -17,8 +17,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageDetailId"
-        android:layout_marginTop="10dp"
-        android:text="Titulo" />
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/cabin"
+        android:paddingLeft="15dp"
+        android:text="Titulo"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/titleId"
+        android:layout_marginTop="3dp"
+        android:background="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/infoId"
@@ -26,7 +38,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleId"
         android:layout_marginTop="57dp"
-        android:text="Indormacion" />
+        android:fontFamily="@font/cabin"
+        android:paddingLeft="20dp"
+        android:paddingRight="7dp"
+        android:paddingBottom="10dp"
+        android:text="Indormacion"
+        android:textAlignment="viewStart"
+        android:textColor="#474747"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/placeId"
@@ -34,7 +53,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleId"
         android:layout_marginTop="21dp"
-        android:text="Sitio" />
+        android:fontFamily="@font/cabin"
+        android:paddingRight="20dp"
+        android:text="Sitio"
+        android:textAlignment="viewEnd"
+        android:textColor="#FC7C7C7C"
+        android:textSize="18sp" />
 
 
 </RelativeLayout>
