@@ -32,14 +32,33 @@ import cat.urv.deim.asm.p3.shared.ui.events.ICommunicateFragments;
 import cat.urv.deim.asm.p3.shared.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p3.shared.ui.news.NewsFragment;
 
+
+import androidx.appcompat.app.AppCompatActivity;
+import cat.urv.deim.asm.libraries.commanagerdc.models.Article;
+import cat.urv.deim.asm.libraries.commanagerdc.models.CalendarItem;
+import cat.urv.deim.asm.libraries.commanagerdc.models.Event;
+import cat.urv.deim.asm.libraries.commanagerdc.models.Faq;
+import cat.urv.deim.asm.libraries.commanagerdc.models.New;
+import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
+
 public class MainActivity extends AppCompatActivity implements ICommunicateFragments {
 
     private AppBarConfiguration mAppBarConfiguration;
     SharedPreferences pref;
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Cargamos los datos de las librerias que nos hagan falta
+
+        DataProvider dataProvider;
+        dataProvider = DataProvider.getInstance(this.getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
+        DataProvider.generateMockJsonStr(this);
+
+
+
         //cargamos las shared preference
         pref = getApplicationContext().getSharedPreferences("MyPref",
                 0);
