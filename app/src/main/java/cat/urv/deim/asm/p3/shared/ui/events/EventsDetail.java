@@ -44,7 +44,7 @@ public class EventsDetail extends Fragment {
 
         if (objectEvent != null){
             event = (EventsVo) objectEvent.getSerializable("object");
-            imageDetail.setImageResource(event.getImageDetail());
+            //imageDetail.setImageResource(event.getImageDetail());
             textDescription.setText(event.getInfoDetail());
             textTitle.setText(event.getName());
             textSite.setText(event.getDesc());

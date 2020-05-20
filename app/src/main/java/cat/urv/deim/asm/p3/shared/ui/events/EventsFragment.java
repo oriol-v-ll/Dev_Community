@@ -16,9 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import cat.urv.deim.asm.p2.common.ErrorLoginActivity;
-import cat.urv.deim.asm.p2.common.LoginActivity;
+import cat.urv.deim.asm.libraries.commanagerdc.models.Event;
+import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
 import cat.urv.deim.asm.p2.common.MainActivity;
 import cat.urv.deim.asm.p2.common.R;
 import cat.urv.deim.asm.p3.shared.EventsDetailActivity;
@@ -31,8 +32,11 @@ public class EventsFragment extends Fragment {
     ArrayList<EventsVo> listaEvents;
     RecyclerView recyclerEvents;
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     Activity activity;
     ICommunicateFragments interfaceCommunicateFragements;
+    private Context applicationContext;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -66,7 +70,24 @@ public class EventsFragment extends Fragment {
     }
 
     private void pullEventsList() {
-        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
+
+        DataProvider  dataProvider;
+        dataProvider = DataProvider.getInstance(this.getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
+
+        final List<Event> event = dataProvider.getEvents();
+
+        for (int i=0; event.size() > i;i++){
+            String title = event.get(i).getName();
+            String image = event.get(i).getImageURL();
+            String descripc = event.get(i).getDescription();
+            String tipus = event.get(i).getType();
+            String descripl = "Esta aun no esta";
+            int image2 = R.drawable.profile_user; // de momento ponemos las dos igual
+
+            listaEvents.add(new EventsVo(title,descripc,image,tipus,descripl,image2));
+        }
+
+        /** listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
                 "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
 
         listaEvents.add(new EventsVo("Juan", "", R.drawable.ic_menu_gallery,
@@ -91,8 +112,9 @@ public class EventsFragment extends Fragment {
                 "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
 
         listaEvents.add(new EventsVo("FATIMA", "Seras PIPI", R.drawable.error_l,
-                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user)); **/
     }
+    
 
     @Override
     public void onAttach(Context context) {
@@ -102,5 +124,13 @@ public class EventsFragment extends Fragment {
             this.activity= (Activity) context;
             interfaceCommunicateFragements= (ICommunicateFragments) this.activity;
         }
+    }
+
+    public Context getApplicationContext() {
+        return applicationContext;
+    }
+
+    public void setApplicationContext(Context applicationContext) {
+        this.applicationContext = applicationContext;
     }
 }

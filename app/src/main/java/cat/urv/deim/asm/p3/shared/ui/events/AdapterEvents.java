@@ -37,7 +37,7 @@ public class AdapterEvents extends
     public void onBindViewHolder(@NonNull EventsViewHolder holder, int position) {
         holder.txtName.setText(listaEvents.get(position).getName());
         holder.txtInfo.setText(listaEvents.get(position).getInfo());
-        holder.foto.setImageResource(listaEvents.get(position).getImageId());
+        holder.foto.setText(listaEvents.get(position).getImageId());
         holder.txtDesc.setText(listaEvents.get(position).getDesc());
     }
 
@@ -61,13 +61,13 @@ public class AdapterEvents extends
     public class EventsViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtName, txtInfo, txtDesc;
-        ImageView foto;
+        TextView foto;
 
         public EventsViewHolder(View itemView) {
             super(itemView);
             txtName= (TextView) itemView.findViewById(R.id.idName);
             txtInfo= (TextView) itemView.findViewById(R.id.idInfo);
-            foto= (ImageView) itemView.findViewById(R.id.idImageEvent);
+            foto= (TextView) itemView.findViewById(R.id.idImageEvent);
             txtDesc= (TextView) itemView.findViewById(R.id.idDesc);
         }
     }

@@ -79,58 +79,15 @@ public class FaqsActivity extends MainActivity {
         final List<Faq> faqs = dataProvider.getFaqs();
 
 
-        for (int i=0; faqs.size()<i;i++){
+        for (int i=0; faqs.size() > i;i++){
 
             chapterList.add(faqs.get(i).getTitle());
             List<String> topic = new ArrayList<>();
             topic.add(faqs.get(i).getBody());
+
             topicList.put(chapterList.get(i),topic);
         }
 
-
-
-/*
-        chapterList.add("Pregunta 1");
-        chapterList.add("Pregunta 2");
-        chapterList.add("Pregunta 3");
-        chapterList.add("Pregunta 4");
-        chapterList.add("Pregunta 5");
-        chapterList.add("Pregunta 6");
-
-        List<String> topic1 = new ArrayList<>();
-        topic1.add("Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo." +
-                " Luctus arcu, urna praesent at id quisque ac. Arcu es massa vestibulum maleusada," +
-                " integer vivamus elit eu mauris eus cum eros quis aliquam wisi. Nulla wisi laoreet" +
-                " suspendisse integer vivamus elit eu mauris");
-
-        List<String> topic2 = new ArrayList<>();
-        topic2.add("Uri nos vamos paeeencima papiii!");
-
-        List<String> topic3 = new ArrayList<>();
-        topic3.add("La movie en play ya no estamos en novela. Bby dale suave cuando baje que yo " +
-                "quiero ver ese tatuaje.");
-
-        List<String> topic4 = new ArrayList<>();
-        topic4.add("YongKingz bby eso no lo hiso Juan Salgado. Sol en el bote y dinero en el tuvo." +
-                " Kevvo aunque tenga jevo yo me atrevo huele bicho cria cuervo.");
-
-
-        List<String> topic5 = new ArrayList<>();
-        topic5.add("Somos reales aqui no hay phantom. Diabla per tiene un bury sagrado");
-
-        List<String> topic6 = new ArrayList<>();
-        topic6.add("Dise que es tranquila pero se las trae. Yo soy como el fly, 15 temporadas sin " +
-                "strike. Pq mami yo quiero la combi completa.");
-
-
-
-        topicList.put(chapterList.get(0),topic1);
-        topicList.put(chapterList.get(1),topic2);
-        topicList.put(chapterList.get(2),topic3);
-        topicList.put(chapterList.get(3),topic4);
-        topicList.put(chapterList.get(4),topic5);
-        topicList.put(chapterList.get(5),topic6);
-*/
     }
 
 
@@ -143,8 +100,4 @@ public class FaqsActivity extends MainActivity {
         return true;
     }
 
-    protected void showFaq(Faq faq){
-        Log.d(TAG,"Field Body:"+faq.getBody());
-        Log.d(TAG,"Field Title:"+faq.getTitle());
-    }
 }
