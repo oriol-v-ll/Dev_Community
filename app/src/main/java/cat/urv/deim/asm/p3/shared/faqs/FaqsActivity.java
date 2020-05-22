@@ -25,8 +25,6 @@ import cat.urv.deim.asm.p2.common.MainActivity;
 
 public class FaqsActivity extends MainActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     ExpandableListViewAdapter listViewAdapter;
     ExpandableListView expandableListView;
     List<String> chapterList;
@@ -89,8 +87,6 @@ public class FaqsActivity extends MainActivity {
         }
 
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
