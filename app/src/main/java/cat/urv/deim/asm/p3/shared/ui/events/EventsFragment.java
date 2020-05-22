@@ -20,6 +20,7 @@ import java.util.List;
 
 import cat.urv.deim.asm.libraries.commanagerdc.models.Event;
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
+import cat.urv.deim.asm.p2.common.MainActivity;
 import cat.urv.deim.asm.p2.common.R;
 import cat.urv.deim.asm.p3.shared.EventsDetailActivity;
 
@@ -27,6 +28,8 @@ import static android.app.ProgressDialog.show;
 
 
 public class EventsFragment extends Fragment {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     ArrayList<EventsVo> listaEvents;
     RecyclerView recyclerEvents;
@@ -69,13 +72,32 @@ public class EventsFragment extends Fragment {
 
     private void pullEventsList() {
 
+        DataProvider  dataProvider;
+        dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
 
-        listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
+        final List<Event> event = dataProvider.getEvents();
+
+        for (int i=0; event.size() > i;i++){
+            String title = event.get(i).getName();
+            int image = R.drawable.error_l;
+            String descripl = event.get(i).getDescription();
+            String tipus = event.get(i).getType();
+            String descripc = event.get(i).getTags();
+            int image2 = R.drawable.profile_user; // de momento ponemos las dos igual
+
+            listaEvents.add(new EventsVo(title,descripc,image,tipus,descripl,image2));
+        }
+
+
+
+
+
+        /** listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
                 "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
         listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
                 "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
         listaEvents.add(new EventsVo("Uri", "Seras cerdo", R.drawable.error_l,
-                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));
+                "En mi casa", "ESTA ES LA LARGA",R.drawable.profile_user));**/
 
     }
 
