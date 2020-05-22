@@ -64,11 +64,7 @@ public class EventsFragment extends Fragment {
                         +listaEvents.get(recyclerEvents.getChildAdapterPosition(view)).getName(),
                         Toast.LENGTH_SHORT).show();
 
-
-              /*  Intent intent = new Intent(getActivity(), EventsDetailActivity.class);
-                startActivity(intent);*/
-
-
+                interfaceCommunicateFragements.sendEvent(listaEvents.get(recyclerEvents.getChildAdapterPosition(view)));
             }
         });
 
@@ -120,6 +116,13 @@ public class EventsFragment extends Fragment {
 
     }
 
+    public void onAttach (Context context) {
+        super.onAttach(context);
 
+        if (context instanceof Activity){
+            this.activity = (Activity) context;
+            interfaceCommunicateFragements = (ICommunicateFragments) this.activity;
+        }
+    }
 
 }
