@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
+
+import cat.urv.deim.asm.libraries.commanagerdc.models.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +65,8 @@ public class EventsFragment extends Fragment {
                         Toast.LENGTH_SHORT).show();
 
 
-                Intent intent = new Intent(getActivity(), EventsDetailActivity.class);
-                startActivity(intent);
+              /*  Intent intent = new Intent(getActivity(), EventsDetailActivity.class);
+                startActivity(intent);*/
 
 
             }
@@ -76,16 +81,30 @@ public class EventsFragment extends Fragment {
         dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
 
         final List<Event> event = dataProvider.getEvents();
-
+        String tags="";
         for (int i=0; event.size() > i;i++){
             String title = event.get(i).getName();
             int image = R.drawable.error_l;
             String descripl = event.get(i).getDescription();
             String tipus = event.get(i).getType();
-            String descripc = event.get(i).getTags();
+
+
+            tags = "";
+            for(Tag tag:event.get(i).getTags()){
+                tags = tags +","+tag.getName();
+
+            }
+
+            //String imageURL = dataProvider.getEvents().get(i).getImageURL();
+            //ImageView foto = (ImageView) getActivity().findViewById(R.id.idImageEvent);
+            //Picasso.get().load(imageURL).placeholder(R.drawable.ic_launcher_background).into(foto);
+            //Picasso.get().load(imageURL).into(foto);
+
+            tags=tags.substring(1,tags.length());
             int image2 = R.drawable.profile_user; // de momento ponemos las dos igual
 
-            listaEvents.add(new EventsVo(title,descripc,image,tipus,descripl,image2));
+            listaEvents.add(new EventsVo(title,tipus,image,tags,descripl,image2));
+
         }
 
 
