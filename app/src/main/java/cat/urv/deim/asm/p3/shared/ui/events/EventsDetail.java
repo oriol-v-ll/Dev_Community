@@ -1,6 +1,7 @@
 package cat.urv.deim.asm.p3.shared.ui.events;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class EventsDetail extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
 
@@ -37,6 +39,7 @@ public class EventsDetail extends Fragment {
         textTitle=view.findViewById(R.id.titleId);
         textSite=view.findViewById(R.id.placeId);
         textDescription=view.findViewById(R.id.infoId);
+        textDescription.setMovementMethod(new ScrollingMovementMethod());  //make text do scroll movement
         imageDetail=view.findViewById(R.id.imageDetailId);
 
         Bundle objectEvent = getArgument();
