@@ -74,7 +74,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="14dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_launcher" />
+                 />
 
             <ToggleButton
                 android:id="@+id/bookmarks"

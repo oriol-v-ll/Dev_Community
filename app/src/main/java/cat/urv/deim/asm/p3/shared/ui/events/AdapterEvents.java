@@ -1,5 +1,7 @@
 package cat.urv.deim.asm.p3.shared.ui.events;
 
+import android.app.LauncherActivity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import cat.urv.deim.asm.p2.common.R;
@@ -19,6 +23,7 @@ public class AdapterEvents extends
 
     ArrayList<EventsVo> listaEvents;
     private View.OnClickListener listener;
+    private Context context;
 
     public AdapterEvents(ArrayList<EventsVo> listaEvents) {
         this.listaEvents = listaEvents;
@@ -35,10 +40,15 @@ public class AdapterEvents extends
 
     @Override
     public void onBindViewHolder(@NonNull EventsViewHolder holder, int position) {
+
         holder.txtName.setText(listaEvents.get(position).getName());
         holder.txtInfo.setText(listaEvents.get(position).getInfo());
-        holder.foto.setImageResource(listaEvents.get(position).getImageId());
+        //holder.foto.setImageResource(listaEvents.get(position).getImageId());
         holder.txtDesc.setText(listaEvents.get(position).getDesc());
+
+
+        //Picasso.with(context).load(listaEvents.get(position).getImageId()).into(holder.foto);
+        Picasso.get().load(listaEvents.get(position).getImageId()).placeholder(R.drawable.ic_launcher_background).into(holder.foto);
     }
 
     @Override

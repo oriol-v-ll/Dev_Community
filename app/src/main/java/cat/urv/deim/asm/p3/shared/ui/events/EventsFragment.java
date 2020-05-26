@@ -91,7 +91,9 @@ public class EventsFragment extends Fragment {
 
             }
 
-            //String imageURL = dataProvider.getEvents().get(i).getImageURL();
+
+
+            String imageURL = dataProvider.getEvents().get(i).getImageURL();
             //ImageView foto = (ImageView) getActivity().findViewById(R.id.idImageEvent);
             //Picasso.get().load(imageURL).placeholder(R.drawable.ic_launcher_background).into(foto);
             //Picasso.get().load(imageURL).into(foto);
@@ -99,7 +101,7 @@ public class EventsFragment extends Fragment {
             tags=tags.substring(1,tags.length());
             int image2 = R.drawable.profile_user; // de momento ponemos las dos igual
 
-            listaEvents.add(new EventsVo(title,tipus,image,tags,descripl,image2));
+            listaEvents.add(new EventsVo(title,tipus,imageURL,tags,descripl,image2));
 
         }
 
