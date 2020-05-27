@@ -60,9 +60,10 @@ public class EventsFragment extends Fragment {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Select: "
+
+               /* Toast.makeText(getContext(), "Select: "
                         +listaEvents.get(recyclerEvents.getChildAdapterPosition(view)).getName(),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show(); */
 
                 interfaceCommunicateFragements.sendEvent(listaEvents.get(recyclerEvents.getChildAdapterPosition(view)));
             }
@@ -80,7 +81,7 @@ public class EventsFragment extends Fragment {
         String tags="";
         for (int i=0; event.size() > i;i++){
             String title = event.get(i).getName();
-            int image = R.drawable.error_l;
+
             String descripl = event.get(i).getDescription();
             String tipus = event.get(i).getType();
 

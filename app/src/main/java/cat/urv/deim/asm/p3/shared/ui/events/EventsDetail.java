@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
+import com.squareup.picasso.Picasso;
+
 import cat.urv.deim.asm.p2.common.R;
 
 public class EventsDetail extends Fragment {
@@ -48,6 +50,9 @@ public class EventsDetail extends Fragment {
         if (objectEvent != null){
             event = (EventsVo) objectEvent.getSerializable("object");
             //imageDetail.setImageResource(event.getImageDetail());
+
+
+            Picasso.get().load(event.getImageId()).placeholder(R.drawable.ic_launcher_background).into(imageDetail);
             textDescription.setText(event.getInfoDetail());
             textTitle.setText(event.getName());
             textSite.setText(event.getDesc());
