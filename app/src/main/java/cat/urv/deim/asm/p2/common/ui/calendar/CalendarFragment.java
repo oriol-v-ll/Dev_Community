@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p3.shared.ui.calendar;
+package cat.urv.deim.asm.p2.common.ui.calendar;
 
 
 import android.os.Bundle;

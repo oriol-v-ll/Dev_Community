@@ -22,9 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
-import cat.urv.deim.asm.p3.shared.ui.articles.ArticlesFragment;
-import cat.urv.deim.asm.p3.shared.ui.bookmarks.BookmarksFragment;
-import cat.urv.deim.asm.p3.shared.ui.calendar.CalendarFragment;
+import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
+import cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment;
+import cat.urv.deim.asm.p2.common.ui.calendar.CalendarFragment;
 import cat.urv.deim.asm.p3.shared.ui.events.EventsDetail;
 import cat.urv.deim.asm.p3.shared.ui.events.EventsFragment;
 import cat.urv.deim.asm.p3.shared.ui.events.EventsVo;
@@ -33,12 +33,6 @@ import cat.urv.deim.asm.p3.shared.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p3.shared.ui.news.NewsFragment;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import cat.urv.deim.asm.libraries.commanagerdc.models.Article;
-import cat.urv.deim.asm.libraries.commanagerdc.models.CalendarItem;
-import cat.urv.deim.asm.libraries.commanagerdc.models.Event;
-import cat.urv.deim.asm.libraries.commanagerdc.models.Faq;
-import cat.urv.deim.asm.libraries.commanagerdc.models.New;
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
 
 public class MainActivity extends AppCompatActivity implements ICommunicateFragments {

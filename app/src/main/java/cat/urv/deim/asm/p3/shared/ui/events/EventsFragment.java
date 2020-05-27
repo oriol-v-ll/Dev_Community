@@ -88,7 +88,7 @@ public class EventsFragment extends Fragment {
 
             tags = "";
             for(Tag tag:event.get(i).getTags()){
-                tags = tags +","+tag.getName();
+                tags = tags +", "+tag.getName();
 
             }
 
