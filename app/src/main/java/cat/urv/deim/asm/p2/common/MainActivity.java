@@ -29,8 +29,8 @@ import cat.urv.deim.asm.p3.shared.ui.events.EventsDetail;
 import cat.urv.deim.asm.p3.shared.ui.events.EventsFragment;
 import cat.urv.deim.asm.p3.shared.ui.events.EventsVo;
 import cat.urv.deim.asm.p3.shared.ui.events.ICommunicateFragments;
-import cat.urv.deim.asm.p3.shared.ui.favorites.FavoritesFragment;
-import cat.urv.deim.asm.p3.shared.ui.news.NewsFragment;
+import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
+import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
 
 
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
@@ -61,15 +61,9 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
         //cuando es true es que es anonimo
         if (anonym){
-
             setContentView(R.layout.activity_main_anonym);
-
-        }
-
-        else{ //Metodo registrado.
-
+        } else{ //Metodo registrado.
             setContentView(R.layout.activity_main_);
-
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -99,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                         boolean fragmentTransaction = false;
                         Fragment fragment = null;
 
-                        //
                         switch (menuItem.getItemId()) {
                             case R.id.nav_profile:
                                 Intent profile = new Intent(MainActivity.this, ProfileActivity.class);
@@ -144,21 +137,16 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
                         if(fragmentTransaction) {
                             getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.nav_host_fragment, fragment)
-                                    .commit();
-
+                                    .replace(R.id.nav_host_fragment, fragment).commit();
                             menuItem.setChecked(true);
                             getSupportActionBar().setTitle(menuItem.getTitle());
                         }
 
                         drawer.closeDrawers();
-
                         return true;
                     }
                 });
         /*---------Fin control del botón que se haga en el menú---------------*/
-
-
     }
 
 

@@ -90,7 +90,6 @@ public class FaqsActivity extends MainActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Falta inflater de menú.
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_no_search, menu);
         return true;

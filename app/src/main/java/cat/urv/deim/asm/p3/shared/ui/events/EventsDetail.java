@@ -49,7 +49,6 @@ public class EventsDetail extends Fragment {
 
         if (objectEvent != null){
             event = (EventsVo) objectEvent.getSerializable("object");
-            //imageDetail.setImageResource(event.getImageDetail());
 
 
             Picasso.get().load(event.getImageId()).placeholder(R.drawable.ic_launcher_background).into(imageDetail);

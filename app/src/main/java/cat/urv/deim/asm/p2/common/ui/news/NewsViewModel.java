@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p3.shared.ui.news;
+package cat.urv.deim.asm.p2.common.ui.news;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

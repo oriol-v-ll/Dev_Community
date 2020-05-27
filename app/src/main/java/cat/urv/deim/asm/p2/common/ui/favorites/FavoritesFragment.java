@@ -1,4 +1,4 @@
-package cat.urv.deim.asm.p3.shared.ui.favorites;
+package cat.urv.deim.asm.p2.common.ui.favorites;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

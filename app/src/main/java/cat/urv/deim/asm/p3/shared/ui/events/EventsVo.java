@@ -8,18 +8,16 @@ public class EventsVo implements Serializable {
     private String infoDetail;
     private String imageId;
     private String desc;
-    private int imageDetail;
 
     public EventsVo(){
 
     }
 
-    public EventsVo (String name, String info, String imageId, String desc, String infoDetail, int imageDetail){
+    public EventsVo (String name, String info, String imageId, String desc, String infoDetail){
         this.name = name;
         this.info = info;
         this.infoDetail = infoDetail;
         this.imageId = imageId;
-        this.imageDetail = imageDetail;
         this.desc = desc;
     }
 
@@ -27,16 +25,8 @@ public class EventsVo implements Serializable {
         this.infoDetail = infoDetail;
     }
 
-    public void setImageDetail(int imagenDetail) {
-        this.imageDetail = imagenDetail;
-    }
-
     public String getInfoDetail() {
         return infoDetail;
-    }
-
-    public int getImageDetail() {
-        return imageDetail;
     }
 
     public String getName() {return name;}
