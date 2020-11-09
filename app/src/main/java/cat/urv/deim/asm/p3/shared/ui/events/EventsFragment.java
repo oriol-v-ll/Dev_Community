@@ -67,6 +67,7 @@ public class EventsFragment extends Fragment {
         dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
 
         final List<Event> event = dataProvider.getEvents();
+
         String tags="";
         for (int i=0; event.size() > i;i++){
             String title = event.get(i).getName();
