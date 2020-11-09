@@ -23,6 +23,14 @@ import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
 import cat.urv.deim.asm.p2.common.R;
 import cat.urv.deim.asm.p2.common.MainActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+
 public class FaqsActivity extends MainActivity {
 
     ExpandableListViewAdapter listViewAdapter;
@@ -66,6 +74,12 @@ public class FaqsActivity extends MainActivity {
     }
 
     private void showList() {
+
+        /*OBTENEMOS INFORMACIÓN CON VOLLEY*/
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="https://django-parking-server.herokuapp.com/endpoints/api/location/";
+
+        //Implementar clases con el broadcast receiver.
 
         chapterList = new ArrayList<String>();
         topicList = new HashMap<String, List<String>>();

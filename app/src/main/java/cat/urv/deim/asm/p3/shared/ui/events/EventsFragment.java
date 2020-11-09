@@ -41,16 +41,12 @@ public class EventsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_events,container, false);
-
         listaEvents = new ArrayList<>();
         recyclerEvents=  view.findViewById(R.id.recyclerId);
         recyclerEvents.setLayoutManager(new LinearLayoutManager(getContext()));
-
         pullEventsList();
-
         AdapterEvents adapter = new AdapterEvents(listaEvents);
         recyclerEvents.setAdapter(adapter);
-
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
