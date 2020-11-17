@@ -2,8 +2,11 @@ package cat.urv.deim.asm.p3.shared.ui.events;
 
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +22,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cat.urv.deim.asm.libraries.commanagerdc.models.Tag;
@@ -32,6 +37,8 @@ import java.util.Map;
 
 import cat.urv.deim.asm.libraries.commanagerdc.models.Event;
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
+import cat.urv.deim.asm.p2.common.Credentials;
+import cat.urv.deim.asm.p2.common.JSONResourceReader;
 import cat.urv.deim.asm.p2.common.MainActivity;
 import cat.urv.deim.asm.p2.common.R;
 
@@ -95,37 +102,54 @@ public class EventsFragment extends Fragment {
         return view;
     }
 
-    private void pullEventsList() {
+    private void pullEventsList()  {
 
         //Aqui se tiene que descargar la información con el volley
+         final Context j = (Context)this.getActivity();
         String url = "https://api.gdgtarragona.net/api/json/events";
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                url, null,
-                new Response.Listener() {
+        RequestQueue queue = Volley.newRequestQueue(this.activity);
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
                     @Override
-                    public void onResponse(Object response) {
-
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+                        Intent intent = new Intent();
+                        intent.setAction("cat.urv.deim.padm.demo.MY_NOTIFICATION");
+                        intent.putExtra("data",response);
+                        j.sendBroadcast(intent);
                     }
-
-
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-                        //Failure Callback
+                        // TODO Auto-generated method stub
+                        Log.d("ERROR","error => "+error.toString());
                     }
-                });
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                //Descargar de credentials.json, esto no se puede dejar asi.
+                JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
+                Credentials credenciales = reader.constructUsingGson(Credentials.class);
+                Log.d("Credentials", credenciales.toString());
 
+                params.put("mail", credenciales.getMail());
+                params.put("username", credenciales.getUsername());
+                params.put("token", credenciales.getToken());
 
-
-// Adding the request to the queue along with a unique string tag
-
-        EventsFragment.getInstance().addToRequestQueue(jsonObjReq,"headerRequest");
+                return params;
+            }
+        };
+        queue.add(getRequest);
 
         DataProvider  dataProvider;
         //Pregunta -> Aquí solo se pueden pasar los eventos, los otros parametros los pillara del raw de momento.
-        dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news/*PASAR EVENTS DESCARGADOS*/,R.raw.articles,R.raw.events,R.raw.calendar);
+        dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
 
         final List<Event> event = dataProvider.getEvents();
 
@@ -152,16 +176,15 @@ public class EventsFragment extends Fragment {
         }
     }
 
-    /** Passing some request headers* */
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String receivedText = intent.getStringExtra("data");
+            Log.d("Response", receivedText);
+        }
+    };
 
-    public Map getHeaders() throws AuthFailureError {
-        HashMap headers = new HashMap();
-        //Obtener los datos de credentials.json
-        headers.put("mail", "xxxxxxx");
-        headers.put("username", "xxxxxxxxxxxxxxx");
-        headers.put("token", "xxxxxxxxxxxxxxx");
-        return headers;
-    }
+
 
     public void onAttach (Context context) {
         super.onAttach(context);

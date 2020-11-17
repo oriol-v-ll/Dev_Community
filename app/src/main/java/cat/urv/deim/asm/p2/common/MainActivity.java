@@ -2,8 +2,12 @@ package cat.urv.deim.asm.p2.common;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 
+import android.util.JsonReader;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +17,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -20,6 +26,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
 import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
@@ -40,11 +60,13 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     private AppBarConfiguration mAppBarConfiguration;
     SharedPreferences pref;
 
+
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //Cargamos los datos de las librerias que nos hagan falta
 
         DataProvider dataProvider;
@@ -92,6 +114,13 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
                         boolean fragmentTransaction = false;
                         Fragment fragment = null;
+                        /*Obtención de las credenciales para acceder a la información*/
+                        String credentials = "";
+
+                        JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
+                        Credentials credenciales = reader.constructUsingGson(Credentials.class);
+                        Log.d("Credentials", credenciales.toString());
+
 
                         switch (menuItem.getItemId()) {
                             case R.id.nav_profile:
@@ -147,6 +176,24 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                     }
                 });
         /*---------Fin control del botón que se haga en el menú---------------*/
+    }
+
+    public String loadJSONFromAsset(String flName) {
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open(flName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+            Log.v("MainActivity", "Load json ok");
+        } catch (IOException ex) {
+            Log.v("MainActivity", "Error: " + ex.getMessage());
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 
 
