@@ -101,52 +101,19 @@ public class EventsFragment extends Fragment {
 
         return view;
     }
+/*
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String parameter = intent.getStringExtra("MY_NOTIFICATION");
+        Log.e(TAG, parameter);
 
+
+    }*/
     private void pullEventsList()  {
 
-        //Aqui se tiene que descargar la información con el volley
-         final Context j = (Context)this.getActivity();
-        String url = "https://api.gdgtarragona.net/api/json/events";
-        RequestQueue queue = Volley.newRequestQueue(this.activity);
-        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("Response", response);
-                        Intent intent = new Intent();
-                        intent.setAction("cat.urv.deim.padm.demo.MY_NOTIFICATION");
-                        intent.putExtra("data",response);
-                        j.sendBroadcast(intent);
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        Log.d("ERROR","error => "+error.toString());
-                    }
-                }
-        ) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String>  params = new HashMap<String, String>();
-                //Descargar de credentials.json, esto no se puede dejar asi.
-                JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
-                Credentials credenciales = reader.constructUsingGson(Credentials.class);
-                Log.d("Credentials", credenciales.toString());
-
-                params.put("mail", credenciales.getMail());
-                params.put("username", credenciales.getUsername());
-                params.put("token", credenciales.getToken());
-
-                return params;
-            }
-        };
-        queue.add(getRequest);
-
+        Intent intent = new Intent();
+        String parameter = intent.getStringExtra("MY_NOTIFICATION");
+        Log.e(TAG, parameter);
         DataProvider  dataProvider;
         //Pregunta -> Aquí solo se pueden pasar los eventos, los otros parametros los pillara del raw de momento.
         dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);

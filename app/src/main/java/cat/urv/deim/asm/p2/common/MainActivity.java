@@ -1,5 +1,6 @@
 package cat.urv.deim.asm.p2.common;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -16,6 +17,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -39,7 +47,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
 import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
@@ -51,21 +61,30 @@ import cat.urv.deim.asm.p3.shared.ui.events.EventsVo;
 import cat.urv.deim.asm.p3.shared.ui.events.ICommunicateFragments;
 import cat.urv.deim.asm.p2.common.ui.favorites.FavoritesFragment;
 import cat.urv.deim.asm.p2.common.ui.news.NewsFragment;
-
-
+import cat.urv.deim.asm.p2.common.listener.ErrorListener;
+import cat.urv.deim.asm.p2.common.listener.SuccessResponse;
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
 
 public class MainActivity extends AppCompatActivity implements ICommunicateFragments {
 
     private AppBarConfiguration mAppBarConfiguration;
     SharedPreferences pref;
-
-
+    private static final String EVENTS_URL = "https://api.gdgtarragona.net/api/json/events";
+    private static final String FAQS_URL = "https://api.gdgtarragona.net/api/json/faqs";
+    private static final String NEWS_URL = "https://api.gdgtarragona.net/api/json/news";
+    private static final String CALENDAR_URL = "https://api.gdgtarragona.net/api/json/calendar";
+    private static final String ARTICLES_URL = "https://api.gdgtarragona.net/api/json/articles";
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        descargaYBroadCasts(this, EVENTS_URL);
+        /*descargaYBroadCasts(this, FAQS_URL);
+        descargaYBroadCasts(this, NEWS_URL);
+        descargaYBroadCasts(this, CALENDAR_URL);
+        descargaYBroadCasts(this, ARTICLES_URL);*/
 
         //Cargamos los datos de las librerias que nos hagan falta
 
@@ -116,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                         Fragment fragment = null;
                         /*Obtención de las credenciales para acceder a la información*/
                         String credentials = "";
-
                         JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
                         Credentials credenciales = reader.constructUsingGson(Credentials.class);
                         Log.d("Credentials", credenciales.toString());
@@ -196,7 +214,32 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         return json;
     }
 
+    public void descargaYBroadCasts(Context context, String url){
 
+
+        final Context j = (Context)this;
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new SuccessResponse(this), new ErrorListener(this)) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                //Descargar de credentials.json, esto no se puede dejar asi.
+                JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
+                Credentials credenciales = reader.constructUsingGson(Credentials.class);
+                Log.d("Credentials", credenciales.toString());
+
+                params.put("mail", credenciales.getMail());
+                params.put("username", credenciales.getUsername());
+                params.put("token", credenciales.getToken());
+
+                return params;
+            }
+        };
+        queue.add(stringRequest);
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Falta inflater de menú.
