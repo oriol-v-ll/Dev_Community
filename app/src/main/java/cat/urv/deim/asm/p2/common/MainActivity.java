@@ -1,7 +1,9 @@
 package cat.urv.deim.asm.p2.common;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.net.wifi.hotspot2.pps.Credential;
@@ -51,6 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cat.urv.deim.asm.p2.common.utils.NetworkUtils;
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
 import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
 import cat.urv.deim.asm.p2.common.ui.bookmarks.BookmarksFragment;
@@ -66,32 +69,23 @@ import cat.urv.deim.asm.p2.common.listener.SuccessResponse;
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
 
 public class MainActivity extends AppCompatActivity implements ICommunicateFragments {
-
+    BroadcastReceiver broadcastReceiver;
     private AppBarConfiguration mAppBarConfiguration;
     SharedPreferences pref;
+    private String events;
     private static final String EVENTS_URL = "https://api.gdgtarragona.net/api/json/events";
     private static final String FAQS_URL = "https://api.gdgtarragona.net/api/json/faqs";
     private static final String NEWS_URL = "https://api.gdgtarragona.net/api/json/news";
     private static final String CALENDAR_URL = "https://api.gdgtarragona.net/api/json/calendar";
     private static final String ARTICLES_URL = "https://api.gdgtarragona.net/api/json/articles";
+    private static final String NOTI_BROADCAST =  "cat.urv.deim.asm.p2.MY_NOTIFICATION";
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        descargaYBroadCasts(this, EVENTS_URL);
-        /*descargaYBroadCasts(this, FAQS_URL);
-        descargaYBroadCasts(this, NEWS_URL);
-        descargaYBroadCasts(this, CALENDAR_URL);
-        descargaYBroadCasts(this, ARTICLES_URL);*/
-
-        //Cargamos los datos de las librerias que nos hagan falta
-
-        DataProvider dataProvider;
-        dataProvider = DataProvider.getInstance(this.getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
-        DataProvider.generateMockJsonStr(this);
-
+        this.broadcastReceiver = new UpdateUIBroadcastReceiver(this);
 
 
         //cargamos las shared preference
@@ -101,9 +95,9 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         boolean anonym = pref.getBoolean("anonym", true);
 
         //cuando es true es que es anonimo
-        if (anonym){
+        if (anonym) {
             setContentView(R.layout.activity_main_anonym);
-        } else{ //Metodo registrado.
+        } else { //Metodo registrado.
             setContentView(R.layout.activity_main_);
         }
 
@@ -133,12 +127,12 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
                         boolean fragmentTransaction = false;
                         Fragment fragment = null;
-                        /*Obtención de las credenciales para acceder a la información*/
+                        /*
                         String credentials = "";
                         JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
                         Credentials credenciales = reader.constructUsingGson(Credentials.class);
                         Log.d("Credentials", credenciales.toString());
-
+                        */
 
                         switch (menuItem.getItemId()) {
                             case R.id.nav_profile:
@@ -155,7 +149,10 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_events:
+                                Bundle bundle = new Bundle();
+                                bundle.putString("Events", events);
                                 fragment = new EventsFragment();
+                                fragment.setArguments(bundle);
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_calendar:
@@ -182,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                                 break;
                         }
 
-                        if(fragmentTransaction) {
+                        if (fragmentTransaction) {
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.nav_host_fragment, fragment).commit();
                             menuItem.setChecked(true);
@@ -214,22 +211,37 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         return json;
     }
 
-    public void descargaYBroadCasts(Context context, String url){
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter("cat.urv.deim.asm.p2.FINISH_CALL_VOLLEY");
+        this.registerReceiver(broadcastReceiver, filter);
+        if (NetworkUtils.isConnected(this)){
+            descargaYBroadCasts(this, EVENTS_URL);
+            /*descargaYBroadCasts(this, FAQS_URL);
+            descargaYBroadCasts(this, NEWS_URL);
+            descargaYBroadCasts(this, CALENDAR_URL);
+            descargaYBroadCasts(this, ARTICLES_URL);*/
+        }
+        else{
+            Log.e(TAG,"Device has not any type of internet connection");
+        }
+    }
 
 
-        final Context j = (Context)this;
+    public void descargaYBroadCasts(Context context, String url) {
+
+        final Context j = (Context) this;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new SuccessResponse(this), new ErrorListener(this)) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String>  params = new HashMap<String, String>();
-                //Descargar de credentials.json, esto no se puede dejar asi.
+                Map<String, String> params = new HashMap<String, String>();
                 JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
                 Credentials credenciales = reader.constructUsingGson(Credentials.class);
                 Log.d("Credentials", credenciales.toString());
-
                 params.put("mail", credenciales.getMail());
                 params.put("username", credenciales.getUsername());
                 params.put("token", credenciales.getToken());
@@ -240,6 +252,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         queue.add(stringRequest);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Falta inflater de menú.
@@ -257,15 +270,50 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        this.unregisterReceiver(broadcastReceiver);
+    }
+
+
+    @Override
     public void sendEvent(EventsVo event) {
         EventsDetail detailEvent = new EventsDetail();
         Bundle bundleSend = new Bundle();
-        bundleSend.putSerializable("object",event);
+        bundleSend.putSerializable("object", event);
+        //bundleSend.putString("Eventos", events);
         detailEvent.setArgument(bundleSend);
 
         //cargar fragment en la activity
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_host_fragment,detailEvent).
+                .replace(R.id.nav_host_fragment, detailEvent).
                 addToBackStack(null).commit();
+    }
+    public void guardaDatos(String datos) throws JSONException {
+        events=datos;
+        //Guardar los eventos denstro de los json que ya existen
+    }
+
+    public class UpdateUIBroadcastReceiver extends BroadcastReceiver {
+        public final static String UPDATED_DATA_KEY = "UPDATED_DATA_KEY";
+        private final String TAG = UpdateUIBroadcastReceiver.class.getSimpleName();
+
+        private MainActivity activity;
+
+        UpdateUIBroadcastReceiver(AppCompatActivity activity){
+            this.activity = (MainActivity) activity;
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String parameter = intent.getStringExtra(UPDATED_DATA_KEY);
+            Log.e(TAG, parameter);
+            try {
+                guardaDatos(parameter);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }

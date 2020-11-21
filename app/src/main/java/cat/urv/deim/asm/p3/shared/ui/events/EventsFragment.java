@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,10 +25,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cat.urv.deim.asm.libraries.commanagerdc.models.Events;
 import cat.urv.deim.asm.libraries.commanagerdc.models.Tag;
 
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ import java.util.Map;
 
 import cat.urv.deim.asm.libraries.commanagerdc.models.Event;
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
+import cat.urv.deim.asm.libraries.commanagerdc.utils.Utils;
 import cat.urv.deim.asm.p2.common.Credentials;
 import cat.urv.deim.asm.p2.common.JSONResourceReader;
 import cat.urv.deim.asm.p2.common.MainActivity;
@@ -46,11 +50,12 @@ import static android.app.ProgressDialog.show;
 
 
 public class EventsFragment extends Fragment {
-
+    BroadcastReceiver broadcastReceiver;
     private static final String TAG = MainActivity.class.getSimpleName();
     private static EventsFragment mInstance;
     ArrayList<EventsVo> listaEvents;
     RecyclerView recyclerEvents;
+    private String eventos = "";
 
     private  RequestQueue requestQueue;
     Activity activity;
@@ -59,6 +64,7 @@ public class EventsFragment extends Fragment {
 
 
     /*MÉTODOS PARA HACER LA DESCARGA DE LOS FICHEROS POSIBLE*/
+    /*
     public static synchronized EventsFragment getInstance()
     {
         return mInstance;
@@ -79,7 +85,7 @@ public class EventsFragment extends Fragment {
     public void cancelAllRequests(String tag)
     {
         getRequestQueue().cancelAll(tag);
-    }
+    }*/
     /*MÉTODOS PARA HACER LA DESCARGA DE LOS FICHEROS POSIBLE*/
 
 
@@ -96,29 +102,40 @@ public class EventsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 interfaceCommunicateFragements.sendEvent(listaEvents.get(recyclerEvents.getChildAdapterPosition(view)));
+
             }
         });
 
         return view;
     }
-/*
+
     @Override
-    public void onReceive(Context context, Intent intent) {
-        String parameter = intent.getStringExtra("MY_NOTIFICATION");
-        Log.e(TAG, parameter);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        if (getArguments()!=null){
+            eventos = getArguments().getString("Events","0");
+            Log.e("Eventos_fragment", eventos);
+            /*Descargar los eventos y ponerlos en el events.raw*/
 
-    }*/
+            
+
+        }
+    }
+
     private void pullEventsList()  {
 
         Intent intent = new Intent();
         String parameter = intent.getStringExtra("MY_NOTIFICATION");
-        Log.e(TAG, parameter);
+       // Log.e(TAG, parameter);
         DataProvider  dataProvider;
-        //Pregunta -> Aquí solo se pueden pasar los eventos, los otros parametros los pillara del raw de momento.
         dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
 
-        final List<Event> event = dataProvider.getEvents();
+        //HAcer que cargue mis eventos.
+        Gson gson = new Gson();
+        Events data = (Events)gson.fromJson(eventos, Events.class);
+        final List<Event> event = data.getEvents();
+        //final List<Event> event = dataProvider.getEvents();
 
         String tags="";
         for (int i=0; event.size() > i;i++){
@@ -143,13 +160,7 @@ public class EventsFragment extends Fragment {
         }
     }
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String receivedText = intent.getStringExtra("data");
-            Log.d("Response", receivedText);
-        }
-    };
+
 
 
 
