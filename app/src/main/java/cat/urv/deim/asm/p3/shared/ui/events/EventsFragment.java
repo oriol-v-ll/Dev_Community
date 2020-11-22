@@ -134,8 +134,13 @@ public class EventsFragment extends Fragment {
         //HAcer que cargue mis eventos.
         Gson gson = new Gson();
         Events data = (Events)gson.fromJson(eventos, Events.class);
-        final List<Event> event = data.getEvents();
+        //final List<Event> event = data.getEvents();
         //final List<Event> event = dataProvider.getEvents();
+
+        //PRUEBAS: UNA VEZ EL JSON TENGA EL FORMATO BUENO SE PUEDE USAR SIN NINGUN PROBLEMA.
+        JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.events);
+        Events eventitos = reader.constructUsingGson(Events.class);
+        final List<Event> event = eventitos.getEvents();
 
         String tags="";
         for (int i=0; event.size() > i;i++){

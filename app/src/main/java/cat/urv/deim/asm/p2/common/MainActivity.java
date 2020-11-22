@@ -73,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     private AppBarConfiguration mAppBarConfiguration;
     SharedPreferences pref;
     private String events;
+    private String news;
+    private String calendar;
+    private String faqs;
+    private String articles;
+
     private static final String EVENTS_URL = "https://api.gdgtarragona.net/api/json/events";
     private static final String FAQS_URL = "https://api.gdgtarragona.net/api/json/faqs";
     private static final String NEWS_URL = "https://api.gdgtarragona.net/api/json/news";
@@ -290,8 +295,14 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                 addToBackStack(null).commit();
     }
     public void guardaDatos(String datos) throws JSONException {
-        events=datos;
-        //Guardar los eventos denstro de los json que ya existen
+        JSONObject object = new JSONObject(datos);
+        if (object.get("datatype").equals("events"))
+            events=datos;
+        if (object.get("datatype").equals("news"))
+            news=datos;
+        if (object.get("datatype").equals("faqs"))
+            faqs=datos;
+        //Guardar los eventos dentro de los json que ya existen
     }
 
     public class UpdateUIBroadcastReceiver extends BroadcastReceiver {
