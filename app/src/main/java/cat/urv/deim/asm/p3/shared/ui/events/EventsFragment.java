@@ -63,30 +63,7 @@ public class EventsFragment extends Fragment {
     private Context applicationContext;
 
 
-    /*MÉTODOS PARA HACER LA DESCARGA DE LOS FICHEROS POSIBLE*/
-    /*
-    public static synchronized EventsFragment getInstance()
-    {
-        return mInstance;
-    }
-    public RequestQueue getRequestQueue()
-    {
-        if (requestQueue==null)
-            requestQueue= Volley.newRequestQueue(activity.getApplicationContext());
 
-        return requestQueue;
-    }
-    public void addToRequestQueue(Request request,String tag)
-    {
-        request.setTag(tag);
-        getRequestQueue().add(request);
-
-    }
-    public void cancelAllRequests(String tag)
-    {
-        getRequestQueue().cancelAll(tag);
-    }*/
-    /*MÉTODOS PARA HACER LA DESCARGA DE LOS FICHEROS POSIBLE*/
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -116,10 +93,6 @@ public class EventsFragment extends Fragment {
         if (getArguments()!=null){
             eventos = getArguments().getString("Events","0");
             Log.e("Eventos_fragment", eventos);
-            /*Descargar los eventos y ponerlos en el events.raw*/
-
-            
-
         }
     }
 

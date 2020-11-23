@@ -234,9 +234,8 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     }
 
 
-    public void descargaYBroadCasts(Context context, String url) {
+    public void descargaYBroadCasts(final Context context, String url) {
 
-        final Context j = (Context) this;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -246,16 +245,116 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                 Map<String, String> params = new HashMap<String, String>();
                 JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
                 Credentials credenciales = reader.constructUsingGson(Credentials.class);
+                String mail = credenciales.getMail();
                 Log.d("Credentials", credenciales.toString());
                 params.put("mail", credenciales.getMail());
                 params.put("username", credenciales.getUsername());
-                params.put("token", credenciales.getToken());
+
+                /*Validamos usuario*/
+                boolean validado = validarUsuario(credenciales.getMail(),credenciales.getUsername(),credenciales.getPassword(),context);
+                /*Obtenemos y modificamos token*/
+                if (validado){
+                    String token = obtenerToken(credenciales.getMail(),credenciales.getUsername(),credenciales.getPassword());
+                    params.put("token", token);
+                }else{
+                    params.put("token", credenciales.getToken());
+                }
 
                 return params;
             }
         };
         queue.add(stringRequest);
 
+    }
+
+    /**
+     * Devuelve el token del usuario
+     *
+     * @param mail
+     * @param username
+     * @param password
+     * @return token obtenido
+     */
+    public String obtenerToken(final String mail , final String username, final String password){
+        final String[] Token = {""};
+        String urlToken = "https://api.gdgtarragona.net/api/json/obtain_token";
+        RequestQueue queue3 = Volley.newRequestQueue(this);
+        StringRequest stringValidar = new StringRequest(Request.Method.GET, urlToken,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String token) {
+                        Token[0] = token;
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error","Error");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mail", mail);
+                params.put("username", username);
+                params.put("password", password);
+                return params;
+            }
+
+        };
+
+        // Add the request to the RequestQueue.
+        queue3.add(stringValidar);
+
+        return Token[0];
+    }
+
+    /**
+     * Validar usuario, devuelve tru si el usuario esta validado, false si no
+     * @param mail
+     * @param username
+     * @param password
+     * @param context
+     * @return
+     */
+    public boolean validarUsuario(final String mail, final String username, final String password, final Context context){
+
+        final boolean[] retorno = new boolean[1];
+        RequestQueue queue2 = Volley.newRequestQueue(context);
+        String urlValidar = "https://api.gdgtarragona.net/api/json/validate_user";
+        StringRequest stringValidar = new StringRequest(Request.Method.GET, urlValidar,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String validado) {
+                        Gson gson = new Gson();
+                        ValidarUsuario validar = gson.fromJson(validado, ValidarUsuario.class);
+                        if (validar.getMessage().equals("Mail is valid")){
+                            retorno[0] = true;
+                        }else{
+                            retorno[0] = false;
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error","Error");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mail", mail);
+                params.put("username", username);
+                params.put("password", password);
+                return params;
+            }
+
+        };
+
+        // Add the request to the RequestQueue.
+        queue2.add(stringValidar);
+
+        return retorno[0];
     }
 
     @Override
