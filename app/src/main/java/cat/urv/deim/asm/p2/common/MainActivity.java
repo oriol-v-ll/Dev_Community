@@ -83,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     private static final String NEWS_URL = "https://api.gdgtarragona.net/api/json/news";
     private static final String CALENDAR_URL = "https://api.gdgtarragona.net/api/json/calendar";
     private static final String ARTICLES_URL = "https://api.gdgtarragona.net/api/json/articles";
-    private static final String NOTI_BROADCAST =  "cat.urv.deim.asm.p2.MY_NOTIFICATION";
+    private static final String VALIDATE_URL = "https://api.gdgtarragona.net/api/json/validate_user";
+    private static final String TOKEN_URL = "https://api.gdgtarragona.net/api/json/obtain_token";
+    private static final String NOTI_BROADCAST = "cat.urv.deim.asm.p2.MY_NOTIFICATION";
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -111,33 +113,24 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         //seleciona la vista del menú lateral.
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_news, R.id.nav_articles, R.id.nav_events,
                 R.id.nav_calendar)
                 .setDrawerLayout(drawer)
                 .build();
-        //Se pone los fragments correspondientes.
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
         /*---------Control del botón que se haga en el menú---------------*/
 
-        navigationView.setNavigationItemSelectedListener( //Ponemos un listener en el navigationview
+        navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                         boolean fragmentTransaction = false;
                         Fragment fragment = null;
-                        /*
-                        String credentials = "";
-                        JSONResourceReader reader = new JSONResourceReader(getResources(), R.raw.credentials);
-                        Credentials credenciales = reader.constructUsingGson(Credentials.class);
-                        Log.d("Credentials", credenciales.toString());
-                        */
 
                         switch (menuItem.getItemId()) {
                             case R.id.nav_profile:
@@ -221,19 +214,22 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         super.onStart();
         IntentFilter filter = new IntentFilter("cat.urv.deim.asm.p2.FINISH_CALL_VOLLEY");
         this.registerReceiver(broadcastReceiver, filter);
-        if (NetworkUtils.isConnected(this)){
+        if (NetworkUtils.isConnected(this)) {
             descargaYBroadCasts(this, EVENTS_URL);
-            /*descargaYBroadCasts(this, FAQS_URL);
+            descargaYBroadCasts(this, FAQS_URL);
             descargaYBroadCasts(this, NEWS_URL);
-            descargaYBroadCasts(this, CALENDAR_URL);
-            descargaYBroadCasts(this, ARTICLES_URL);*/
-        }
-        else{
-            Log.e(TAG,"Device has not any type of internet connection");
+            //descargaYBroadCasts(this, CALENDAR_URL);
+            //descargaYBroadCasts(this, ARTICLES_URL);
+        } else {
+            Log.e(TAG, "Device has not any type of internet connection");
         }
     }
 
-
+    /**
+     * Se pasa la url de que se quiere descargar y lo pone auntomatciamente en una variable.
+     * @param context
+     * @param url
+     */
     public void descargaYBroadCasts(final Context context, String url) {
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -251,12 +247,12 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                 params.put("username", credenciales.getUsername());
 
                 /*Validamos usuario*/
-                boolean validado = validarUsuario(credenciales.getMail(),credenciales.getUsername(),credenciales.getPassword(),context);
+                boolean validado = validarUsuario(credenciales.getMail(), credenciales.getUsername(), credenciales.getPassword(), context);
                 /*Obtenemos y modificamos token*/
-                if (validado){
-                    String token = obtenerToken(credenciales.getMail(),credenciales.getUsername(),credenciales.getPassword());
+                if (validado) {
+                    String token = obtenerToken(credenciales.getMail(), credenciales.getUsername(), credenciales.getPassword());
                     params.put("token", token);
-                }else{
+                } else {
                     params.put("token", credenciales.getToken());
                 }
 
@@ -275,11 +271,10 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
      * @param password
      * @return token obtenido
      */
-    public String obtenerToken(final String mail , final String username, final String password){
+    public String obtenerToken(final String mail, final String username, final String password) {
         final String[] Token = {""};
-        String urlToken = "https://api.gdgtarragona.net/api/json/obtain_token";
         RequestQueue queue3 = Volley.newRequestQueue(this);
-        StringRequest stringValidar = new StringRequest(Request.Method.GET, urlToken,
+        StringRequest stringValidar = new StringRequest(Request.Method.GET, TOKEN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String token) {
@@ -288,9 +283,9 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error","Error");
+                Log.d("Error", "Error");
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
@@ -301,45 +296,41 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
             }
 
         };
-
-        // Add the request to the RequestQueue.
         queue3.add(stringValidar);
-
         return Token[0];
     }
 
     /**
      * Validar usuario, devuelve tru si el usuario esta validado, false si no
+     *
      * @param mail
      * @param username
      * @param password
      * @param context
      * @return
      */
-    public boolean validarUsuario(final String mail, final String username, final String password, final Context context){
-
+    public boolean validarUsuario(final String mail, final String username, final String password, final Context context) {
         final boolean[] retorno = new boolean[1];
         RequestQueue queue2 = Volley.newRequestQueue(context);
         String urlValidar = "https://api.gdgtarragona.net/api/json/validate_user";
-        StringRequest stringValidar = new StringRequest(Request.Method.GET, urlValidar,
+        StringRequest stringValidar = new StringRequest(Request.Method.GET, VALIDATE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String validado) {
                         Gson gson = new Gson();
                         ValidarUsuario validar = gson.fromJson(validado, ValidarUsuario.class);
-                        if (validar.getMessage().equals("Mail is valid")){
+                        if (validar.getMessage().equals("Mail is valid")) {
                             retorno[0] = true;
-                        }else{
+                        } else {
                             retorno[0] = false;
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error","Error");
+                Log.d("Error", "Error");
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
@@ -350,10 +341,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
             }
 
         };
-
-        // Add the request to the RequestQueue.
         queue2.add(stringValidar);
-
         return retorno[0];
     }
 
@@ -393,24 +381,34 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                 .replace(R.id.nav_host_fragment, detailEvent).
                 addToBackStack(null).commit();
     }
+
+    /**
+     * Se guardan los datos obtenidos de los JSON descargados en las variables de la clase.
+     *
+     * @param datos
+     * @throws JSONException
+     */
     public void guardaDatos(String datos) throws JSONException {
         JSONObject object = new JSONObject(datos);
         if (object.get("datatype").equals("events"))
-            events=datos;
+            events = datos;
         if (object.get("datatype").equals("news"))
-            news=datos;
+            news = datos;
         if (object.get("datatype").equals("faqs"))
-            faqs=datos;
+            faqs = datos;
         //Guardar los eventos dentro de los json que ya existen
     }
 
+    /**
+     * Boradcast-receiver que recibe la información de las diferentes llamadas a la diferente información que necesitamos.
+     */
     public class UpdateUIBroadcastReceiver extends BroadcastReceiver {
         public final static String UPDATED_DATA_KEY = "UPDATED_DATA_KEY";
         private final String TAG = UpdateUIBroadcastReceiver.class.getSimpleName();
 
         private MainActivity activity;
 
-        UpdateUIBroadcastReceiver(AppCompatActivity activity){
+        UpdateUIBroadcastReceiver(AppCompatActivity activity) {
             this.activity = (MainActivity) activity;
         }
 
