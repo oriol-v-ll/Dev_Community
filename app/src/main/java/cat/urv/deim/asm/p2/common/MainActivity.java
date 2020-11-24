@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
         this.broadcastReceiver = new UpdateUIBroadcastReceiver(this);
 
-
         //cargamos las shared preference
         pref = getApplicationContext().getSharedPreferences("MyPref",
                 0);
@@ -150,7 +149,11 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                                 Bundle bundle = new Bundle();
                                 bundle.putString("Events", events);
                                 fragment = new EventsFragment();
-                                fragment.setArguments(bundle);
+                                try {
+                                    fragment.setArguments(bundle);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_calendar:
