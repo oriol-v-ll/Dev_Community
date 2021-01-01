@@ -6,6 +6,13 @@ import android.net.NetworkInfo;
 
 public class NetworkUtils {
 
+
+    /**
+     * Funcion que detecta si el dispositivo esta conectado a la red para poder realizar las distintas operaciones
+     * de la app.
+     * @param context
+     * @return
+     */
     public static boolean isConnected(Context context){
         ConnectivityManager cm =
                 (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);

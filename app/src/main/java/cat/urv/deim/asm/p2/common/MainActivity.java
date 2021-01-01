@@ -34,8 +34,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import android.view.Menu;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +55,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cat.urv.deim.asm.p2.common.persistence.EventsRoom;
+import cat.urv.deim.asm.p2.common.persistence.RoomDB;
 import cat.urv.deim.asm.p2.common.utils.NetworkUtils;
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
 import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
@@ -146,15 +150,28 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_events:
+                                // Mirar si hay conexión y resolver los problemas si no se puede descargar el codigo:
                                 Bundle bundle = new Bundle();
-                                bundle.putString("Events", events);
+                                if (NetworkUtils.isConnected(MainActivity.this)) {
+                                    bundle.putString("Events", events);
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "No hay conexion... Se cargan datos locales", Toast.LENGTH_SHORT).show();
+                                    RoomDB db = Room.databaseBuilder(getApplicationContext(),
+                                            RoomDB.class, "Dev_community_DB").build();
+                                     List<EventsRoom> eventsOffline;
+                                    eventsOffline =  db.EventsRoomDao().getAllEvents();
+                                    bundle.putString("Events", eventsOffline.get(0).getEvents());
+
+                                }
+                                //Transición de fragment con el bundle.
                                 fragment = new EventsFragment();
                                 try {
                                     fragment.setArguments(bundle);
+                                    fragmentTransaction = true;
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                fragmentTransaction = true;
+
                                 break;
                             case R.id.nav_calendar:
                                 fragment = new CalendarFragment();
@@ -215,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     @Override
     protected void onStart() {
         super.onStart();
+        RoomDB db = Room.databaseBuilder(getApplicationContext(),
+                RoomDB.class, "Dev_community_DB").build();
         IntentFilter filter = new IntentFilter("cat.urv.deim.asm.p2.FINISH_CALL_VOLLEY");
         this.registerReceiver(broadcastReceiver, filter);
         if (NetworkUtils.isConnected(this)) {
@@ -223,9 +242,15 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
             descargaYBroadCasts(this, NEWS_URL);
             //descargaYBroadCasts(this, CALENDAR_URL);
             //descargaYBroadCasts(this, ARTICLES_URL);
+
         } else {
             Log.e(TAG, "Device has not any type of internet connection");
         }
+
+    }
+
+    public void inserta(final Context context, String url){
+
     }
 
     /**
@@ -304,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     }
 
     /**
-     * Validar usuario, devuelve tru si el usuario esta validado, false si no
+     * Validar usuario, devuelve true si el usuario esta validado, false si no
      *
      * @param mail
      * @param username
@@ -370,7 +395,11 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         this.unregisterReceiver(broadcastReceiver);
     }
 
-
+    /**
+     * Función que llama el fragment de los eventos para poder realizar el cambio de archivos con el bundle.
+     *
+     * @param event
+     */
     @Override
     public void sendEvent(EventsVo event) {
         EventsDetail detailEvent = new EventsDetail();
@@ -386,20 +415,32 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     }
 
     /**
-     * Se guardan los datos obtenidos de los JSON descargados en las variables de la clase.
+     * Se guardan los datos obtenidos de los JSON descargados en las variables de la clase. Se guarda en su respectiva clase
+     * de persistencia para poder obtenerlos en estado offline.
      *
      * @param datos
      * @throws JSONException
      */
     public void guardaDatos(String datos) throws JSONException {
+        RoomDB db = Room.databaseBuilder(getApplicationContext(),
+                RoomDB.class, "Dev_community_DB").build();
         JSONObject object = new JSONObject(datos);
-        if (object.get("datatype").equals("events"))
+        if (object.get("datatype").equals("events")){
             events = datos;
+            EventsRoom eventsInsert = new EventsRoom(datos);
+            db.EventsRoomDao().insertEvents(eventsInsert);
+        }
         if (object.get("datatype").equals("news"))
             news = datos;
         if (object.get("datatype").equals("faqs"))
             faqs = datos;
-        //Guardar los eventos dentro de los json que ya existen
+        if (object.get("datatype").equals("calendar")){
+
+        }
+        if (object.get("datatype").equals("articles")){
+
+        }
+
     }
 
     /**
