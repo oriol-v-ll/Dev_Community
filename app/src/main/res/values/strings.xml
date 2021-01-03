@@ -18,7 +18,9 @@
     <string name="learn">"Learn"</string>
     <string name="try_again">"Try again"</string>
     <string name="error_n">"UPS... Couldn't Sing In"</string>
+    <string name="error_n_general">"There's no one here working at the moment."</string>
     <string name="error">"Your username and password doesn't match. Please try again!"</string>
+    <string name="error_general">"Please, connect to the internet"</string>
     <string name="anonymous">"ANONYMOUS USER"</string>
     <string name="continue_anonymous">"CONTINUE ANONYMOUSLY"</string>
     <string name="sign_in">"User or E-mail"</string>

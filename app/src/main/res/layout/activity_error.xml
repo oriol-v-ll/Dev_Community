@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".ErrorLoginActivity">
+    tools:context=".ErrorActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -14,39 +14,40 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="60dp"
-        android:layout_toStartOf="@+id/textView2"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="49dp"
         app:srcCompat="@drawable/error_l"
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="87dp" />
 
     <TextView
         android:id="@+id/error_negrita"
-        android:layout_width="290dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="258dp"
-        android:gravity="center"
-        android:text="@string/error_n"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="105dp"
+        android:text="@string/error_n_general"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/tryAgain"
-        android:layout_width="290dp"
+        android:layout_width="268dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="102dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="45dp"
         android:background="#45ABC4"
-        android:onClick="try_again"
+        android:onClick="tryAgain"
         android:text="@string/try_again"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -54,12 +55,14 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="290dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/error_negrita"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="202dp"
-        android:text="@string/error"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="50dp"
+        android:text="@string/error_general"
         android:textAlignment="center" />
 </RelativeLayout>

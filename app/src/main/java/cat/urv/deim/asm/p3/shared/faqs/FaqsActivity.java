@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +18,18 @@ import java.util.List;
 import cat.urv.deim.asm.libraries.commanagerdc.models.Article;
 import cat.urv.deim.asm.libraries.commanagerdc.models.CalendarItem;
 import cat.urv.deim.asm.libraries.commanagerdc.models.Event;
+import cat.urv.deim.asm.libraries.commanagerdc.models.Events;
 import cat.urv.deim.asm.libraries.commanagerdc.models.Faq;
+import cat.urv.deim.asm.libraries.commanagerdc.models.Faqs;
 import cat.urv.deim.asm.libraries.commanagerdc.models.New;
 import cat.urv.deim.asm.libraries.commanagerdc.providers.DataProvider;
+import cat.urv.deim.asm.p2.common.ErrorActivity;
 import cat.urv.deim.asm.p2.common.R;
 import cat.urv.deim.asm.p2.common.MainActivity;
+import cat.urv.deim.asm.p2.common.persistence.EventsRoom;
+import cat.urv.deim.asm.p2.common.persistence.EventsRoomDao;
+import cat.urv.deim.asm.p2.common.persistence.RoomDB;
+import cat.urv.deim.asm.p2.common.utils.NetworkUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,6 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 
 public class FaqsActivity extends MainActivity {
@@ -75,30 +84,50 @@ public class FaqsActivity extends MainActivity {
 
     private void showList() {
 
-        /*OBTENEMOS INFORMACIÓN CON VOLLEY*/
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://django-parking-server.herokuapp.com/endpoints/api/location/";
 
         //Implementar clases con el broadcast receiver.
-
         chapterList = new ArrayList<String>();
         topicList = new HashMap<String, List<String>>();
 
-        DataProvider dataProvider;
-        dataProvider = DataProvider.getInstance(this.getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
-        DataProvider.generateMockJsonStr(this);
+        //Detectamos si hay conexión en el dispositivo para poder coger los datos de la capa de persistencia
+        if (NetworkUtils.isConnected(FaqsActivity.this)) {
 
-        final List<Faq> faqs = dataProvider.getFaqs();
+            //La información se ha descargado previamente de volley en el MainActivity
+            Gson gson = new Gson();
+            String faqs = MainActivity.getFaqs();
+            Faqs data = (Faqs) gson.fromJson(faqs, Faqs.class);
+            final List<Faq> listaFaqs = data.getFaqs();
+
+            for (int i=0; listaFaqs.size() > i;i++){
+
+                chapterList.add(listaFaqs.get(i).getTitle());
+                List<String> topic = new ArrayList<>();
+                topic.add(listaFaqs.get(i).getBody());
+
+                topicList.put(chapterList.get(i),topic);
+            }
+        }else{
+            //Buscamos la información de la base de datos y si no se puede
+            RoomDB db = RoomDB.getDatabase(FaqsActivity.this);
+            EventsRoomDao mDao = db.EventsRoomDao();
+            List<EventsRoom> faqsOffline;
+            faqsOffline =  mDao.getAllEvents();
+            if (faqsOffline.size()==0){
+                Intent faqs = new Intent(FaqsActivity.this, ErrorActivity.class);
+                startActivity(faqs);
+                finish();
+            }else{
+                //Guardar los datos de persistencia de los faqs y ponerlos aquí.
 
 
-        for (int i=0; faqs.size() > i;i++){
+            }
 
-            chapterList.add(faqs.get(i).getTitle());
-            List<String> topic = new ArrayList<>();
-            topic.add(faqs.get(i).getBody());
-
-            topicList.put(chapterList.get(i),topic);
         }
+
+
+
+
+
 
     }
 

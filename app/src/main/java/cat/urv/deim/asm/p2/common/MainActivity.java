@@ -80,10 +80,13 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     private String events;
     private String news;
     private String calendar;
-    private String faqs;
+    private static String faqs;
     private String articles;
     private EventsRoomDao mDao;
 
+    public static String getFaqs() {
+        return faqs;
+    }
 
     private static final String EVENTS_URL = "https://api.gdgtarragona.net/api/json/events";
     private static final String FAQS_URL = "https://api.gdgtarragona.net/api/json/faqs";
@@ -155,26 +158,38 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                             case R.id.nav_events:
                                 // Mirar si hay conexión y resolver los problemas si no se puede descargar el codigo:
                                 Bundle bundle = new Bundle();
+                                fragment = new EventsFragment();
                                 if (NetworkUtils.isConnected(MainActivity.this)) {
                                     bundle.putString("Events", events);
+                                    //Transición de fragment con el bundle.
+                                    try {
+                                        fragment.setArguments(bundle);
+                                        fragmentTransaction = true;
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }else{
                                     RoomDB db = RoomDB.getDatabase(MainActivity.this);
                                     mDao = db.EventsRoomDao();
-
-                                    Toast.makeText(getApplicationContext(), "No hay conexion... Se cargan datos locales", Toast.LENGTH_SHORT).show();
-                                     List<EventsRoom> eventsOffline;
+                                    List<EventsRoom> eventsOffline;
                                     eventsOffline =  mDao.getAllEvents();
-                                    bundle.putString("Events", eventsOffline.get(0).getEvents());
+                                    if (eventsOffline.size()==0){
+                                        Intent eventos = new Intent(MainActivity.this, ErrorActivity.class);
+                                        startActivity(eventos);
+                                        finish();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "No hay conexion... Se cargan datos locales", Toast.LENGTH_SHORT).show();
+                                        bundle.putString("Events", eventsOffline.get(0).getEvents());
+                                        try {
+                                            fragment.setArguments(bundle);
+                                            fragmentTransaction = true;
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
 
                                 }
-                                //Transición de fragment con el bundle.
-                                fragment = new EventsFragment();
-                                try {
-                                    fragment.setArguments(bundle);
-                                    fragmentTransaction = true;
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+
 
                                 break;
                             case R.id.nav_calendar:

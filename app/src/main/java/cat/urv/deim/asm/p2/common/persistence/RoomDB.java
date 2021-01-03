@@ -12,6 +12,11 @@ public abstract class RoomDB extends RoomDatabase {
 
     private static RoomDB INSTANCE;
 
+    /**
+     * Metodo para referenciar siempre la misma base de datos desde todos los sitios dónde se pida.
+     * @param context
+     * @return
+     */
     public static RoomDB getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (RoomDB.class) {
@@ -19,7 +24,6 @@ public abstract class RoomDB extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             RoomDB.class, "Dev_community_DB").allowMainThreadQueries()
                             .build();
-
                 }
             }
         }

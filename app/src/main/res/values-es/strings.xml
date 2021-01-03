@@ -17,6 +17,8 @@
     <!--Assignation of the diferent strings in the app-->
     <string name="be_in_touch">"Interactúa"</string>
     <string name="networking">"Conéctate en línea"</string>
+    <string name="error_general">"Porfavor, conectate a internet"</string>
+    <string name="error_n_general">"No hay nadie trabajando aqui en este momento"</string>
     <string name="learn">"Aprenda"</string>
     <string name="try_again">"Vuelve a probar"</string>
     <string name="error_n">"Vaya... No se ha podido acceder"</string>

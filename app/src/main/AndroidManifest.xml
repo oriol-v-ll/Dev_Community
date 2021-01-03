@@ -64,6 +64,9 @@
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ErrorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ErrorLoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
