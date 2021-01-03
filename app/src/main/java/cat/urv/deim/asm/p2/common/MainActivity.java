@@ -56,6 +56,7 @@ import java.util.List;
 import java.util.Map;
 
 import cat.urv.deim.asm.p2.common.persistence.EventsRoom;
+import cat.urv.deim.asm.p2.common.persistence.EventsRoomDao;
 import cat.urv.deim.asm.p2.common.persistence.RoomDB;
 import cat.urv.deim.asm.p2.common.utils.NetworkUtils;
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     private String calendar;
     private String faqs;
     private String articles;
+    private EventsRoomDao mDao;
+
 
     private static final String EVENTS_URL = "https://api.gdgtarragona.net/api/json/events";
     private static final String FAQS_URL = "https://api.gdgtarragona.net/api/json/faqs";
@@ -155,11 +158,12 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                                 if (NetworkUtils.isConnected(MainActivity.this)) {
                                     bundle.putString("Events", events);
                                 }else{
+                                    RoomDB db = RoomDB.getDatabase(MainActivity.this);
+                                    mDao = db.EventsRoomDao();
+
                                     Toast.makeText(getApplicationContext(), "No hay conexion... Se cargan datos locales", Toast.LENGTH_SHORT).show();
-                                    RoomDB db = Room.databaseBuilder(getApplicationContext(),
-                                            RoomDB.class, "Dev_community_DB").build();
                                      List<EventsRoom> eventsOffline;
-                                    eventsOffline =  db.EventsRoomDao().getAllEvents();
+                                    eventsOffline =  mDao.getAllEvents();
                                     bundle.putString("Events", eventsOffline.get(0).getEvents());
 
                                 }
@@ -232,8 +236,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     @Override
     protected void onStart() {
         super.onStart();
-        RoomDB db = Room.databaseBuilder(getApplicationContext(),
-                RoomDB.class, "Dev_community_DB").build();
+
         IntentFilter filter = new IntentFilter("cat.urv.deim.asm.p2.FINISH_CALL_VOLLEY");
         this.registerReceiver(broadcastReceiver, filter);
         if (NetworkUtils.isConnected(this)) {
@@ -422,13 +425,14 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
      * @throws JSONException
      */
     public void guardaDatos(String datos) throws JSONException {
-        RoomDB db = Room.databaseBuilder(getApplicationContext(),
-                RoomDB.class, "Dev_community_DB").build();
+        RoomDB db = RoomDB.getDatabase(MainActivity.this);
+        mDao = db.EventsRoomDao();
+
         JSONObject object = new JSONObject(datos);
         if (object.get("datatype").equals("events")){
             events = datos;
             EventsRoom eventsInsert = new EventsRoom(datos);
-            db.EventsRoomDao().insertEvents(eventsInsert);
+            mDao.insertEventsOffline(eventsInsert);
         }
         if (object.get("datatype").equals("news"))
             news = datos;

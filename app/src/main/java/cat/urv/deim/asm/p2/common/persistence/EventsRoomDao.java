@@ -16,7 +16,7 @@ public interface EventsRoomDao {
     List<EventsRoom> getAllEvents();
 
     @Insert
-    void insertEvents(EventsRoom events);
+    void insertEventsOffline(EventsRoom ... events);
 
     /*
     @Query("SELECT * FROM user")
