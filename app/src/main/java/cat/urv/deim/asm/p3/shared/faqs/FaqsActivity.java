@@ -28,6 +28,8 @@ import cat.urv.deim.asm.p2.common.R;
 import cat.urv.deim.asm.p2.common.MainActivity;
 import cat.urv.deim.asm.p2.common.persistence.EventsRoom;
 import cat.urv.deim.asm.p2.common.persistence.EventsRoomDao;
+import cat.urv.deim.asm.p2.common.persistence.FaqsRoom;
+import cat.urv.deim.asm.p2.common.persistence.FaqsRoomDao;
 import cat.urv.deim.asm.p2.common.persistence.RoomDB;
 import cat.urv.deim.asm.p2.common.utils.NetworkUtils;
 
@@ -109,16 +111,27 @@ public class FaqsActivity extends MainActivity {
         }else{
             //Buscamos la información de la base de datos y si no se puede
             RoomDB db = RoomDB.getDatabase(FaqsActivity.this);
-            EventsRoomDao mDao = db.EventsRoomDao();
-            List<EventsRoom> faqsOffline;
-            faqsOffline =  mDao.getAllEvents();
+            FaqsRoomDao mDao = db.FaqsRoomDao();
+            List<FaqsRoom> faqsOffline;
+            faqsOffline =  mDao.getAllFaqs();
             if (faqsOffline.size()==0){
                 Intent faqs = new Intent(FaqsActivity.this, ErrorActivity.class);
                 startActivity(faqs);
                 finish();
             }else{
-                //Guardar los datos de persistencia de los faqs y ponerlos aquí.
+                Toast.makeText(getApplicationContext(), "No hay conexion... Se cargan datos locales", Toast.LENGTH_SHORT).show();
+                Gson gsonOffline = new Gson();
+                String info = faqsOffline.get(0).getFaqs();
+                Faqs dataOffline = (Faqs) gsonOffline.fromJson(info,Faqs.class);
+                final List<Faq> listaFaqsOffline = dataOffline.getFaqs();
 
+                for (int i=0; listaFaqsOffline.size() > i;i++){
+                    chapterList.add(listaFaqsOffline.get(i).getTitle());
+                    List<String> topic = new ArrayList<>();
+                    topic.add(listaFaqsOffline.get(i).getBody());
+
+                    topicList.put(chapterList.get(i),topic);
+                }
 
             }
 

@@ -57,6 +57,8 @@ import java.util.Map;
 
 import cat.urv.deim.asm.p2.common.persistence.EventsRoom;
 import cat.urv.deim.asm.p2.common.persistence.EventsRoomDao;
+import cat.urv.deim.asm.p2.common.persistence.FaqsRoom;
+import cat.urv.deim.asm.p2.common.persistence.FaqsRoomDao;
 import cat.urv.deim.asm.p2.common.persistence.RoomDB;
 import cat.urv.deim.asm.p2.common.utils.NetworkUtils;
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     private static String faqs;
     private String articles;
     private EventsRoomDao mDao;
+    private FaqsRoomDao  mFaqsDao;
 
     public static String getFaqs() {
         return faqs;
@@ -442,8 +445,10 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     public void guardaDatos(String datos) throws JSONException {
         RoomDB db = RoomDB.getDatabase(MainActivity.this);
         mDao = db.EventsRoomDao();
+        mFaqsDao = db.FaqsRoomDao();
 
         JSONObject object = new JSONObject(datos);
+        //Los elementos descargados son alamacenados en las variables y en la base de datos.
         if (object.get("datatype").equals("events")){
             events = datos;
             EventsRoom eventsInsert = new EventsRoom(datos);
@@ -451,13 +456,16 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         }
         if (object.get("datatype").equals("news"))
             news = datos;
-        if (object.get("datatype").equals("faqs"))
+        if (object.get("datatype").equals("faqs")) {
             faqs = datos;
+            FaqsRoom faqsInsert = new FaqsRoom(datos);
+            mFaqsDao.insertFaqsOffline(faqsInsert);
+        }
         if (object.get("datatype").equals("calendar")){
-
+            calendar=datos;
         }
         if (object.get("datatype").equals("articles")){
-
+            articles = datos;
         }
 
     }

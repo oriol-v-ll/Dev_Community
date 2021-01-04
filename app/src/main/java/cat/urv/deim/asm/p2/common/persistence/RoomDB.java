@@ -6,10 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {EventsRoom.class}, version = 1)
+@Database(entities = {EventsRoom.class,FaqsRoom.class}, version = 2)
 public abstract class RoomDB extends RoomDatabase {
-    public abstract EventsRoomDao EventsRoomDao();
 
+    public abstract EventsRoomDao EventsRoomDao();
+    public abstract FaqsRoomDao FaqsRoomDao();
     private static RoomDB INSTANCE;
 
     /**
@@ -23,6 +24,7 @@ public abstract class RoomDB extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             RoomDB.class, "Dev_community_DB").allowMainThreadQueries()
+                            .fallbackToDestructiveMigration() //Necesario para cambiar de version y añadir entidades a la base de datos.
                             .build();
                 }
             }

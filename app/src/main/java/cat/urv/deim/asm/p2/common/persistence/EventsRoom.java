@@ -38,4 +38,8 @@ public class EventsRoom implements Serializable {
     public EventsRoom(String events) {
         this.events = events;
     }
+
+
+
+
 }

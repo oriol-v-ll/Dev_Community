@@ -18,4 +18,6 @@ public interface EventsRoomDao {
     void insertEventsOffline(EventsRoom ... events);
 
 
+
+
 }
