@@ -261,8 +261,12 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
             descargaYBroadCasts(this, EVENTS_URL);
             descargaYBroadCasts(this, FAQS_URL);
             descargaYBroadCasts(this, NEWS_URL);
-            //descargaYBroadCasts(this, CALENDAR_URL);
-            //descargaYBroadCasts(this, ARTICLES_URL);
+            try
+            {
+                Thread.sleep(1000);
+            }catch(InterruptedException e){}
+            descargaYBroadCasts(this, CALENDAR_URL);
+            descargaYBroadCasts(this, ARTICLES_URL);
 
         } else {
             Log.e(TAG, "Device has not any type of internet connection");
@@ -270,9 +274,7 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
 
     }
 
-    public void inserta(final Context context, String url){
 
-    }
 
     /**
      * Se pasa la url de que se quiere descargar y lo pone auntomatciamente en una variable.
@@ -494,5 +496,10 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
             }
 
         }
+
+
+
+
+
     }
 }
