@@ -1,3 +1,8 @@
+/**
+ *
+ * MainActivity.java Activity principal para el desarrollo de la aplicación DevCommunity
+ *
+ */
 package cat.urv.deim.asm.p2.common;
 
 import android.content.BroadcastReceiver;
