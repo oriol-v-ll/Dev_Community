@@ -6,11 +6,14 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {EventsRoom.class,FaqsRoom.class}, version = 2)
+@Database(entities = {EventsRoom.class,FaqsRoom.class, NewsRoom.class, CalendarRoom.class, ArticlesRoom.class}, version = 3)
 public abstract class RoomDB extends RoomDatabase {
 
     public abstract EventsRoomDao EventsRoomDao();
     public abstract FaqsRoomDao FaqsRoomDao();
+    public abstract NewsRoomDAO NewsRoomDAO();
+    public abstract CalendarRoomDAO CalendarRoomDAO();
+    public abstract articlesRoomDAO ArticlesRoomDAO();
     private static RoomDB INSTANCE;
 
     /**

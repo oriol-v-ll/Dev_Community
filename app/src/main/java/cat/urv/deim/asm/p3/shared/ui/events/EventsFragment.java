@@ -98,12 +98,6 @@ public class EventsFragment extends Fragment {
 
     private void pullEventsList()  {
 
-        Intent intent = new Intent();
-        String parameter = intent.getStringExtra("MY_NOTIFICATION");
-        Log.e(TAG, parameter);
-        DataProvider  dataProvider;
-        dataProvider = DataProvider.getInstance(this.getActivity().getApplicationContext(),R.raw.faqs,R.raw.news,R.raw.articles,R.raw.events,R.raw.calendar);
-
         //Hacer que cargue mis eventos.
         Gson gson = new Gson();
         Events data = (Events)gson.fromJson(eventos, Events.class);
@@ -124,7 +118,7 @@ public class EventsFragment extends Fragment {
 
             }
 
-            String imageURL = dataProvider.getEvents().get(i).getImageURL();
+            String imageURL = data.getEvents().get(i).getImageURL();
 
             tags=tags.substring(1,tags.length());
 

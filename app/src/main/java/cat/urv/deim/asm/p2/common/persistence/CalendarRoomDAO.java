@@ -9,12 +9,15 @@ import java.util.List;
 import cat.urv.deim.asm.p3.shared.ui.events.EventsVo;
 
 @Dao
-public interface EventsRoomDao {
-
-    @Query("SELECT * FROM events")
-    List<EventsRoom> getAllEvents();
-
+public interface CalendarRoomDAO {
+/*
+    @Query("SELECT * FROM calendar")
+    List<CalendarRoom> getAllCalendar();
+*/
     @Insert
-    void insertEventsOffline(EventsRoom ... events);
+    void insertCalendarOffline(CalendarRoom ... news);
+
+
+
 
 }

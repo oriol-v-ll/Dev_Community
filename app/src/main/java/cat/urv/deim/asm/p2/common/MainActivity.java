@@ -60,11 +60,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cat.urv.deim.asm.libraries.commanagerdc.models.New;
+import cat.urv.deim.asm.p2.common.persistence.ArticlesRoom;
+import cat.urv.deim.asm.p2.common.persistence.CalendarRoom;
+import cat.urv.deim.asm.p2.common.persistence.CalendarRoomDAO;
 import cat.urv.deim.asm.p2.common.persistence.EventsRoom;
 import cat.urv.deim.asm.p2.common.persistence.EventsRoomDao;
 import cat.urv.deim.asm.p2.common.persistence.FaqsRoom;
 import cat.urv.deim.asm.p2.common.persistence.FaqsRoomDao;
+import cat.urv.deim.asm.p2.common.persistence.NewsRoom;
+import cat.urv.deim.asm.p2.common.persistence.NewsRoomDAO;
 import cat.urv.deim.asm.p2.common.persistence.RoomDB;
+import cat.urv.deim.asm.p2.common.persistence.articlesRoomDAO;
 import cat.urv.deim.asm.p2.common.utils.NetworkUtils;
 import cat.urv.deim.asm.p3.shared.faqs.FaqsActivity;
 import cat.urv.deim.asm.p2.common.ui.articles.ArticlesFragment;
@@ -91,6 +98,9 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
     private String articles;
     private EventsRoomDao mDao;
     private FaqsRoomDao  mFaqsDao;
+    private NewsRoomDAO mNewsDao;
+    private CalendarRoomDAO mCalendarDao;
+    private articlesRoomDAO marticlesRoomDAO;
 
     public static String getFaqs() {
         return faqs;
@@ -168,14 +178,19 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                                 Bundle bundle = new Bundle();
                                 fragment = new EventsFragment();
                                 if (NetworkUtils.isConnected(MainActivity.this)) {
-                                    bundle.putString("Events", events);
-                                    //Transición de fragment con el bundle.
-                                    try {
-                                        fragment.setArguments(bundle);
-                                        fragmentTransaction = true;
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                    if (events.equals(null)){
+                                        Toast.makeText(getApplicationContext(), "La conexión a internet és lenta... porfavor intentelo de nuevo más tarde", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        bundle.putString("Events", events);
+                                        //Transición de fragment con el bundle.
+                                        try {
+                                            fragment.setArguments(bundle);
+                                            fragmentTransaction = true;
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
                                     }
+
                                 }else{
                                     RoomDB db = RoomDB.getDatabase(MainActivity.this);
                                     mDao = db.EventsRoomDao();
@@ -197,8 +212,6 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
                                     }
 
                                 }
-
-
                                 break;
                             case R.id.nav_calendar:
                                 fragment = new CalendarFragment();
@@ -453,6 +466,9 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         RoomDB db = RoomDB.getDatabase(MainActivity.this);
         mDao = db.EventsRoomDao();
         mFaqsDao = db.FaqsRoomDao();
+        mNewsDao = db.NewsRoomDAO();
+        mCalendarDao = db.CalendarRoomDAO();
+        marticlesRoomDAO = db.ArticlesRoomDAO();
 
         JSONObject object = new JSONObject(datos);
         //Los elementos descargados son alamacenados en las variables y en la base de datos.
@@ -461,8 +477,11 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
             EventsRoom eventsInsert = new EventsRoom(datos);
             mDao.insertEventsOffline(eventsInsert);
         }
-        if (object.get("datatype").equals("news"))
+        if (object.get("datatype").equals("news")) {
             news = datos;
+            NewsRoom newsinsert = new NewsRoom(datos);
+            mNewsDao.insertNewsOffline(newsinsert);
+        }
         if (object.get("datatype").equals("faqs")) {
             faqs = datos;
             FaqsRoom faqsInsert = new FaqsRoom(datos);
@@ -470,9 +489,13 @@ public class MainActivity extends AppCompatActivity implements ICommunicateFragm
         }
         if (object.get("datatype").equals("calendar")){
             calendar=datos;
+            CalendarRoom calendarinsert = new CalendarRoom(datos);
+            mCalendarDao.insertCalendarOffline(calendarinsert);
         }
         if (object.get("datatype").equals("articles")){
             articles = datos;
+            ArticlesRoom articlesinsert = new ArticlesRoom(datos);
+            marticlesRoomDAO.insertArticlesOffline(articlesinsert);
         }
 
     }
